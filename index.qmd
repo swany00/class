@@ -1,0 +1,19 @@
+---
+format: dashboard
+---
+
+## Row {height=70%}
+
+:::{.card}
+Card 1
+:::
+
+## Row {height=30%}
+
+:::{.card}
+Card 2-1
+:::
+
+:::{.card}
+Card 2-2
+:::
