@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ml03-(1 – class</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">class</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<p>##<span class="math display">\[ \textrm{Linear Regression} \]</span></p>
+<p>##1. 패키지 장착</p>
+<div id="cell-2" class="cell" data-outputid="1ea006d8-c876-4cbe-9f77-3312abf4c01e" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.pyplot <span class="im">import</span> subplots</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-3" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> variance_inflation_factor <span class="im">as</span> VIF</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.anova <span class="im">import</span> anova_lm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-4" class="cell" data-outputid="dcde3b1e-37b7-45a6-94c8-45eb85b09106" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install --upgrade pandas</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ISLP <span class="im">import</span> load_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="단순선형회귀분석" class="level2">
+<h2 class="anchored" data-anchor-id="단순선형회귀분석">2. 단순선형회귀분석</h2>
+<ul>
+<li>Boston data 불러오기</li>
+</ul>
+<div id="cell-6" class="cell" data-outputid="f439419f-f02e-4429-f7d5-879d5780df82" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ISLP.models <span class="im">import</span> (ModelSpec <span class="im">as</span> MS, summarize , poly)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandas.io.formats.<span class="bu">format</span> <span class="im">import</span> DataFrameFormatter</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Inside the pandas/io/formats/html.py file (you'll need to find this file in your pandas installation),</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># locate the _get_columns_formatted_values function and modify it as follows:</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _get_columns_formatted_values(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">str</span>]:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># only reached with non-Multi Index</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># return self.columns._format_flat(include_name=False)  # Replace this line</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  formatter <span class="op">=</span> DataFrameFormatter(<span class="va">self</span>.columns, include_name<span class="op">=</span><span class="va">False</span>)  <span class="co"># With this line</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> formatter._format_col_name_split()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>Boston <span class="op">=</span> load_data(<span class="st">"Boston"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>Boston.columns</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.DataFrame({<span class="st">'intercept'</span>: np.ones(Boston.shape[<span class="dv">0</span>]), <span class="st">'lstat'</span>: Boston[<span class="st">'lstat'</span>]})</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 절편을 포함시키는 데이터프레임 생성</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X[:<span class="dv">4</span>])</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Boston[<span class="st">'medv'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   intercept  lstat
+0        1.0   4.98
+1        1.0   9.14
+2        1.0   4.03
+3        1.0   2.94</code></pre>
+</div>
+</div>
+<ul>
+<li>Boston data 단순선형회귀분석</li>
+</ul>
+<div id="cell-8" class="cell" data-outputid="836a7978-4e2c-476e-9477-8de7d446c08b" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y, X)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.fit()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.summary())</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># medv ~ lstat</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (adj.) R square / DF (1/504) / Durbin-Watson (auto-cor.)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   medv   R-squared:                       0.544
+Model:                            OLS   Adj. R-squared:                  0.543
+Method:                 Least Squares   F-statistic:                     601.6
+Date:                Tue, 24 Sep 2024   Prob (F-statistic):           5.08e-88
+Time:                        01:17:15   Log-Likelihood:                -1641.5
+No. Observations:                 506   AIC:                             3287.
+Df Residuals:                     504   BIC:                             3295.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+intercept     34.5538      0.563     61.415      0.000      33.448      35.659
+lstat         -0.9500      0.039    -24.528      0.000      -1.026      -0.874
+==============================================================================
+Omnibus:                      137.043   Durbin-Watson:                   0.892
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              291.373
+Skew:                           1.453   Prob(JB):                     5.36e-64
+Kurtosis:                       5.319   Cond. No.                         29.7
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+</div>
+<p>여기서 중요한건 X에 절편이 포함되어야 한다 이때 MS라는 패키지가 절편을 자동 생성한다. 추정량 34.5랑 -0.95 pvalue가 0.05보다 작다 즉</p>
+<div id="cell-10" class="cell" data-outputid="d7b0f8b3-3bcb-4055-da47-efc7e4c6a85a" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MS 구문을 이용해서 입력 행렬 처리</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#--------------------------</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>design <span class="op">=</span> MS([<span class="st">'lstat'</span>])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>design <span class="op">=</span> design.fit(Boston)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> design.transform(Boston)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X[:<span class="dv">4</span>])</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y, X)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.fit()</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   intercept  lstat
+0        1.0   4.98
+1        1.0   9.14
+2        1.0   4.03
+3        1.0   2.94
+intercept    34.553841
+lstat        -0.950049
+dtype: float64</code></pre>
+</div>
+</div>
+<p>MS 구문을 쓰면 자동으로 정면?을 만들어준다. transform이 절편 만들어 준거</p>
+<div id="cell-12" class="cell" data-outputid="3ceaf449-ffee-4914-fcd7-d008f999fecb" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 새로운 입력변수에 대한 예측 (평균, 신뢰구간, 예측구간)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------------------</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>new_df <span class="op">=</span> pd.DataFrame({<span class="st">'lstat'</span>:[<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>]})</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>newX <span class="op">=</span> design.transform(new_df)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(newX)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>new_predictions <span class="op">=</span> results.get_prediction(newX)<span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(new_predictions.predicted_mean)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(new_predictions.conf_int(alpha<span class="op">=</span><span class="fl">0.05</span>))</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(new_predictions.conf_int(obs<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.05</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   intercept  lstat
+0        1.0      5
+1        1.0     10
+2        1.0     15
+[29.80359411 25.05334734 20.30310057]
+[[29.00741194 30.59977628]
+ [24.47413202 25.63256267]
+ [19.73158815 20.87461299]]
+[[17.56567478 42.04151344]
+ [12.82762635 37.27906833]
+ [ 8.0777421  32.52845905]]</code></pre>
+</div>
+</div>
+<p>29.00741194 30.59977628]prediction인터벌 17.56567478 42.04151344컨피던스 인터벌</p>
+<div id="cell-14" class="cell" data-outputid="ec31bed6-55c0-4881-ecd1-953745af1968" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 평균직선에 대한 그래프 / 잔차에 대한 그래프</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> abline(ax, b, m):</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  xlim <span class="op">=</span> ax.get_xlim()</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  ylim <span class="op">=</span> [m <span class="op">*</span> xlim[<span class="dv">0</span>] <span class="op">+</span> b, m <span class="op">*</span> xlim[<span class="dv">1</span>] <span class="op">+</span> b]</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  ax.plot(xlim, ylim)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> abline(ax, b, m, <span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  xlim <span class="op">=</span> ax.get_xlim()</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  ylim <span class="op">=</span> [m <span class="op">*</span> xlim[<span class="dv">0</span>] <span class="op">+</span> b, m <span class="op">*</span> xlim[<span class="dv">1</span>] <span class="op">+</span> b]</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  ax.plot(xlim, ylim, <span class="op">*</span>args, <span class="op">**</span>kwargs)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">5</span>))[<span class="dv">1</span>]</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>abline(ax,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>results.params[<span class="dv">0</span>],</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>results.params[<span class="dv">1</span>], <span class="st">'r--'</span>, linewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))[<span class="dv">1</span>]</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>ax.scatter(results.fittedvalues, results.resid)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Fitted value'</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Residual'</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">0</span>, c<span class="op">=</span><span class="st">'k'</span>, ls<span class="op">=</span><span class="st">'--'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_23774/2837087302.py:18: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  results.params[0],
+/tmp/ipykernel_23774/2837087302.py:19: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  results.params[1], 'r--', linewidth=3)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ML03 (1)_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ML03 (1)_files/figure-html/cell-9-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-15" class="cell" data-outputid="df841eec-7938-461f-8238-1e9d6094ee80" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 관측치에 대한 leverage 계산 및 그래프화</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>infl <span class="op">=</span> results.get_influence()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))[<span class="dv">1</span>]</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(np.arange(X.shape[<span class="dv">0</span>]), infl.hat_matrix_diag)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Index'</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Leverage'</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>np.argmax(infl.hat_matrix_diag)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>374</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ML03 (1)_files/figure-html/cell-10-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Boston data 다중선형 회귀분석</li>
+</ul>
+<div id="cell-17" class="cell" data-outputid="34b5b21f-27d7-4161-cea7-56e7639fd120" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 입력변수를 lstat, age로 확장</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> MS([<span class="st">'lstat'</span>, <span class="st">'age'</span>]).fit_transform(Boston)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> sm.OLS(y, X)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>results1 <span class="op">=</span> model1.fit()</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summarize(results1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              coef  std err       t  P&gt;|t|
+intercept  33.2228    0.731  45.458  0.000
+lstat      -1.0321    0.048 -21.416  0.000
+age         0.0345    0.012   2.826  0.005</code></pre>
+</div>
+</div>
+<div id="cell-18" class="cell" data-outputid="eb0a9ec6-30c8-4b0c-9d48-ac4f92c7a966" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 입력변수를 mdev를 제외한 모든 변수로 학장</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>terms <span class="op">=</span> Boston.columns.drop(<span class="st">'medv'</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>terms</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> MS(terms).fit_transform(Boston)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y, X)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.fit()</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summarize(results))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              coef  std err       t  P&gt;|t|
+intercept  41.6173    4.936   8.431  0.000
+crim       -0.1214    0.033  -3.678  0.000
+zn          0.0470    0.014   3.384  0.001
+indus       0.0135    0.062   0.217  0.829
+chas        2.8400    0.870   3.264  0.001
+nox       -18.7580    3.851  -4.870  0.000
+rm          3.6581    0.420   8.705  0.000
+age         0.0036    0.013   0.271  0.787
+dis        -1.4908    0.202  -7.394  0.000
+rad         0.2894    0.067   4.325  0.000
+tax        -0.0127    0.004  -3.337  0.001
+ptratio    -0.9375    0.132  -7.091  0.000
+lstat      -0.5520    0.051 -10.897  0.000</code></pre>
+</div>
+</div>
+<p>pvalue가 높게 나온거는</p>
+<p>유의성검증에서는 유의하다고 나왔을 것이다. 하나라도 0이 아닌게 있기때문 그래서 pvalue가 높은거를 빼고 다시 fit한다. 아주 정확한 예측이 안될수있으니 다른방법도 사용해야한다. indus 0.0135 0.062 0.217 0.829랑 age 0.0036 0.013 0.271 0.787를 지웠다 계수가 b1…bn 까지 있다. 0.8 0.1 … 0.9의 값이다. pvalue 귀무가설이 맞다고 해서 확률이 낮아서 기각을 한다.</p>
+<p>추가로 차원의 저주라고 차원이 커지게 되면 발생하는 문제도 있다.</p>
+<div id="cell-21" class="cell" data-outputid="843e3845-11a6-4003-b864-a2cfaffb3df8" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 위의 변수 중 age를 제외한 결과 (앞의 표에서 age이 p.vlaue가 높음에 유의)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>minus_age <span class="op">=</span> Boston.columns.drop([<span class="st">'medv'</span>, <span class="st">'age'</span>])</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>Xma <span class="op">=</span> MS(minus_age).fit_transform(Boston)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> sm.OLS(y, Xma)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summarize(model1.fit()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              coef  std err       t  P&gt;|t|
+intercept  41.5251    4.920   8.441  0.000
+crim       -0.1214    0.033  -3.683  0.000
+zn          0.0465    0.014   3.379  0.001
+indus       0.0135    0.062   0.217  0.829
+chas        2.8528    0.868   3.287  0.001
+nox       -18.4851    3.714  -4.978  0.000
+rm          3.6811    0.411   8.951  0.000
+dis        -1.5068    0.193  -7.825  0.000
+rad         0.2879    0.067   4.322  0.000
+tax        -0.0127    0.004  -3.333  0.001
+ptratio    -0.9346    0.132  -7.099  0.000
+lstat      -0.5474    0.048 -11.483  0.000</code></pre>
+</div>
+</div>
+<div id="cell-22" class="cell" data-outputid="a2ce68e1-f9b7-4358-c2fa-48e32530e9b8" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 다중공선성을 확인하기 위한 VIF 값을 보여줌</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>vals <span class="op">=</span> [VIF(X, i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, X.shape[<span class="dv">1</span>])]</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>vif <span class="op">=</span> pd.DataFrame({<span class="st">'vif'</span>:vals},index<span class="op">=</span>X.columns[<span class="dv">1</span>:])</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vif)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              vif
+crim     1.767486
+zn       2.298459
+indus    3.987181
+chas     1.071168
+nox      4.369093
+rm       1.912532
+age      3.088232
+dis      3.954037
+rad      7.445301
+tax      9.002158
+ptratio  1.797060
+lstat    2.870777</code></pre>
+</div>
+</div>
+<p>tax를 지워버리는 것도 방법이다.</p>
+<ul>
+<li>교호작용을 포함한 선형회귀분석
+<ul>
+<li>교호작용이라는 두 변수 간의 시너지가 존재하는 경우, 즉 특정 변수가 다른 변수의 영향력에 영향을 줌</li>
+</ul></li>
+</ul>
+<div id="cell-25" class="cell" data-outputid="217d23a5-1de7-4426-da3e-6cc114844bef" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lstat과 age간의 교호작용을 고려</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------------</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> MS([<span class="st">'lstat'</span>, <span class="st">'age'</span>, (<span class="st">'lstat'</span>, <span class="st">'age'</span>)]).fit_transform(Boston)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>model2 <span class="op">=</span> sm.OLS(y, X)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summarize(model2.fit()))</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 결과 lstat이 평균을 높여주는 효과가 age가 클수록 커짐</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># lstat에 대해서 다항식 차원을 2차까지 늘림</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> MS([poly(<span class="st">'lstat'</span>, degree<span class="op">=</span><span class="dv">2</span>), <span class="st">'age'</span>]).fit_transform(Boston)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>model3 <span class="op">=</span> sm.OLS(y, X)</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>results3 <span class="op">=</span> model3.fit()</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summarize(results3))</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 2차식까지 통계적 유의성 확인됨</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(anova_lm(results1, results3))</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co"># results1은 lstat에 대한 선형, results3은 lstat에 대한 2차 다항식</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 검정은 다항식을 2차로 쓰는 것이 유의한 지를 검정</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              coef  std err       t  P&gt;|t|
+intercept  36.0885    1.470  24.553  0.000
+lstat      -1.3921    0.167  -8.313  0.000
+age        -0.0007    0.020  -0.036  0.971
+lstat:age   0.0042    0.002   2.244  0.025
+                              coef  std err       t  P&gt;|t|
+intercept                  17.7151    0.781  22.681    0.0
+poly(lstat, degree=2)[0] -179.2279    6.733 -26.620    0.0
+poly(lstat, degree=2)[1]   72.9908    5.482  13.315    0.0
+age                         0.0703    0.011   6.471    0.0
+   df_resid           ssr  df_diff      ss_diff           F        Pr(&gt;F)
+0     503.0  19168.128609      0.0          NaN         NaN           NaN
+1     502.0  14165.613251      1.0  5002.515357  177.278785  7.468491e-35</code></pre>
+</div>
+</div>
+<p>예측의 관점에서 교호작용을 고려 할 필요없ㄷ</p>
+<div id="cell-27" class="cell" data-outputid="194424ac-be6f-4381-9089-d82c58c5c217" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># results3의 결과에 대해서 잔차의 산점도를 그려봄</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))[<span class="dv">1</span>]</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>ax.scatter(results3.fittedvalues, results3.resid)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Fitted value'</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Residual'</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">0</span>, c<span class="op">=</span><span class="st">'k'</span>, ls<span class="op">=</span><span class="st">'--'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ML03 (1)_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p>3번째 모형으로 그려본 그림이다. 등분산성 확보되었다.</p>
+<ul>
+<li>Carseats data 불러오기</li>
+</ul>
+<div id="cell-31" class="cell" data-outputid="ad41eee8-dd23-4dfa-d34d-d86573e91441" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 변수를 불러와서 Sales를 반응변수로 나머지 전체와</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Income*Advertising과 Price*Age의 교호작용을 고려</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>Carseats <span class="op">=</span> load_data(<span class="st">'Carseats'</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Carseats.columns)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Carseats.head())</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>allvars <span class="op">=</span> <span class="bu">list</span>(Carseats.columns.drop(<span class="st">'Sales'</span>))</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Carseats[<span class="st">'Sales'</span>]</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>final <span class="op">=</span> allvars <span class="op">+</span> [(<span class="st">'Income'</span>, <span class="st">'Advertising'</span>),(<span class="st">'Price'</span>, <span class="st">'Age'</span>)]</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> MS(final).fit_transform(Carseats)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y, X)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.fit().aic)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summarize(model.fit()))</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 교호작용 중 Income*Advertising만 통계적으로 유의함</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index(['Sales', 'CompPrice', 'Income', 'Advertising', 'Population', 'Price',
+       'ShelveLoc', 'Age', 'Education', 'Urban', 'US'],
+      dtype='object')
+   Sales  CompPrice  Income  Advertising  Population  Price ShelveLoc  Age  \
+0   9.50        138      73           11         276    120       Bad   42   
+1  11.22        111      48           16         260     83      Good   65   
+2  10.06        113      35           10         269     80    Medium   59   
+3   7.40        117     100            4         466     97    Medium   55   
+4   4.15        141      64            3         340    128       Bad   38   
+
+   Education Urban   US  
+0         17   Yes  Yes  
+1         10   Yes  Yes  
+2         12   Yes  Yes  
+3         14   Yes  Yes  
+4         13   Yes   No  
+1157.337779308029
+                      coef  std err       t  P&gt;|t|
+intercept           6.5756    1.009   6.519  0.000
+CompPrice           0.0929    0.004  22.567  0.000
+Income              0.0109    0.003   4.183  0.000
+Advertising         0.0702    0.023   3.107  0.002
+Population          0.0002    0.000   0.433  0.665
+Price              -0.1008    0.007 -13.549  0.000
+ShelveLoc[Good]     4.8487    0.153  31.724  0.000
+ShelveLoc[Medium]   1.9533    0.126  15.531  0.000
+Age                -0.0579    0.016  -3.633  0.000
+Education          -0.0209    0.020  -1.063  0.288
+Urban[Yes]          0.1402    0.112   1.247  0.213
+US[Yes]            -0.1576    0.149  -1.058  0.291
+Income:Advertising  0.0008    0.000   2.698  0.007
+Price:Age           0.0001    0.000   0.801  0.424</code></pre>
+</div>
+</div>
+</section>
+<section id="가변수-사용법" class="level2">
+<h2 class="anchored" data-anchor-id="가변수-사용법">3. 가변수 사용법</h2>
+<div id="cell-33" class="cell" data-outputid="2ff3e271-44ea-49e4-a1ca-e13b2686c860" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ISLP.models <span class="im">import</span> contrast</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># data loading</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>Bike <span class="op">=</span> load_data(<span class="st">'Bikeshare'</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>Bike.shape, Bike.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>((8645, 15),
+ Index(['season', 'mnth', 'day', 'hr', 'holiday', 'weekday', 'workingday',
+        'weathersit', 'temp', 'atemp', 'hum', 'windspeed', 'casual',
+        'registered', 'bikers'],
+       dtype='object'))</code></pre>
+</div>
+</div>
+<div id="cell-34" class="cell" data-outputid="c9eaa027-38d2-430a-da88-0bc1b67ad5c3" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ISLP.models <span class="im">import</span> contrast</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># data loading</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>Bike <span class="op">=</span> load_data(<span class="st">'Bikeshare'</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>Bike.shape, Bike.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>((8645, 15),
+ Index(['season', 'mnth', 'day', 'hr', 'holiday', 'weekday', 'workingday',
+        'weathersit', 'temp', 'atemp', 'hum', 'windspeed', 'casual',
+        'registered', 'bikers'],
+       dtype='object'))</code></pre>
+</div>
+</div>
+<div id="cell-35" class="cell" data-outputid="1d722d97-01de-4396-8c3a-c920f882b0e3" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>X2 <span class="op">=</span> MS([<span class="st">'mnth'</span>, <span class="st">'hr'</span>, <span class="st">'workingday'</span>,<span class="st">'temp'</span>, <span class="st">'weathersit'</span>]).fit_transform(Bike)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> Bike[<span class="st">'bikers'</span>]</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>M1_lm <span class="op">=</span> sm.OLS(Y, X2).fit()</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>S2 <span class="op">=</span> summarize(M1_lm)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(S2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                 coef  std err       t  P&gt;|t|
+intercept                    -68.6317    5.307 -12.932  0.000
+mnth[Feb]                      6.8452    4.287   1.597  0.110
+mnth[March]                   16.5514    4.301   3.848  0.000
+mnth[April]                   41.4249    4.972   8.331  0.000
+mnth[May]                     72.5571    5.641  12.862  0.000
+mnth[June]                    67.8187    6.544  10.364  0.000
+mnth[July]                    45.3245    7.081   6.401  0.000
+mnth[Aug]                     53.2430    6.640   8.019  0.000
+mnth[Sept]                    66.6783    5.925  11.254  0.000
+mnth[Oct]                     75.8343    4.950  15.319  0.000
+mnth[Nov]                     60.3100    4.610  13.083  0.000
+mnth[Dec]                     46.4577    4.271  10.878  0.000
+hr[1]                        -14.5793    5.699  -2.558  0.011
+hr[2]                        -21.5791    5.733  -3.764  0.000
+hr[3]                        -31.1408    5.778  -5.389  0.000
+hr[4]                        -36.9075    5.802  -6.361  0.000
+hr[5]                        -24.1355    5.737  -4.207  0.000
+hr[6]                         20.5997    5.704   3.612  0.000
+hr[7]                        120.0931    5.693  21.095  0.000
+hr[8]                        223.6619    5.690  39.310  0.000
+hr[9]                        120.5819    5.693  21.182  0.000
+hr[10]                        83.8013    5.705  14.689  0.000
+hr[11]                       105.4234    5.722  18.424  0.000
+hr[12]                       137.2837    5.740  23.916  0.000
+hr[13]                       136.0359    5.760  23.617  0.000
+hr[14]                       126.6361    5.776  21.923  0.000
+hr[15]                       132.0865    5.780  22.852  0.000
+hr[16]                       178.5206    5.772  30.927  0.000
+hr[17]                       296.2670    5.749  51.537  0.000
+hr[18]                       269.4409    5.736  46.976  0.000
+hr[19]                       186.2558    5.714  32.596  0.000
+hr[20]                       125.5492    5.704  22.012  0.000
+hr[21]                        87.5537    5.693  15.378  0.000
+hr[22]                        59.1226    5.689  10.392  0.000
+hr[23]                        26.8376    5.688   4.719  0.000
+workingday                     1.2696    1.784   0.711  0.477
+temp                         157.2094   10.261  15.321  0.000
+weathersit[cloudy/misty]     -12.8903    1.964  -6.562  0.000
+weathersit[heavy rain/snow] -109.7446   76.667  -1.431  0.152
+weathersit[light rain/snow]  -66.4944    2.965 -22.425  0.000</code></pre>
+</div>
+</div>
+<p>intercept에 1월하고 24시가 포함되어있다.</p>
+<div id="cell-37" class="cell" data-outputid="08ff41c3-f672-441a-dad8-dfe2aa8221b6" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>hr_encode <span class="op">=</span> contrast(<span class="st">'hr'</span>, <span class="st">'sum'</span>)     <span class="co"># 합에 대한 제약을 검</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>mnth_encode <span class="op">=</span> contrast(<span class="st">'mnth'</span>, <span class="st">'sum'</span>) <span class="co"># 합에 대한 제약을 검</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>X2 <span class="op">=</span> MS([mnth_encode, hr_encode, <span class="st">'workingday'</span>,<span class="st">'temp'</span>, <span class="st">'weathersit'</span>]).fit_transform(Bike)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> Bike[<span class="st">'bikers'</span>]</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>M2_lm <span class="op">=</span> sm.OLS(Y, X2).fit()</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>S2 <span class="op">=</span> summarize(M2_lm)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(S2)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 마지막 범주의 계수는 나머지 계수들의 합에 음수를 취함</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>((M1_lm.fittedvalues <span class="op">-</span> M2_lm.fittedvalues)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 거의 차이가 없음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                 coef  std err       t  P&gt;|t|
+intercept                     73.5974    5.132  14.340  0.000
+mnth[Jan]                    -46.0871    4.085 -11.281  0.000
+mnth[Feb]                    -39.2419    3.539 -11.088  0.000
+mnth[March]                  -29.5357    3.155  -9.361  0.000
+mnth[April]                   -4.6622    2.741  -1.701  0.089
+mnth[May]                     26.4700    2.851   9.285  0.000
+mnth[June]                    21.7317    3.465   6.272  0.000
+mnth[July]                    -0.7626    3.908  -0.195  0.845
+mnth[Aug]                      7.1560    3.535   2.024  0.043
+mnth[Sept]                    20.5912    3.046   6.761  0.000
+mnth[Oct]                     29.7472    2.700  11.019  0.000
+mnth[Nov]                     14.2229    2.860   4.972  0.000
+hr[0]                        -96.1420    3.955 -24.307  0.000
+hr[1]                       -110.7213    3.966 -27.916  0.000
+hr[2]                       -117.7212    4.016 -29.310  0.000
+hr[3]                       -127.2828    4.081 -31.191  0.000
+hr[4]                       -133.0495    4.117 -32.319  0.000
+hr[5]                       -120.2775    4.037 -29.794  0.000
+hr[6]                        -75.5424    3.992 -18.925  0.000
+hr[7]                         23.9511    3.969   6.035  0.000
+hr[8]                        127.5199    3.950  32.284  0.000
+hr[9]                         24.4399    3.936   6.209  0.000
+hr[10]                       -12.3407    3.936  -3.135  0.002
+hr[11]                         9.2814    3.945   2.353  0.019
+hr[12]                        41.1417    3.957  10.397  0.000
+hr[13]                        39.8939    3.975  10.036  0.000
+hr[14]                        30.4940    3.991   7.641  0.000
+hr[15]                        35.9445    3.995   8.998  0.000
+hr[16]                        82.3786    3.988  20.655  0.000
+hr[17]                       200.1249    3.964  50.488  0.000
+hr[18]                       173.2989    3.956  43.806  0.000
+hr[19]                        90.1138    3.940  22.872  0.000
+hr[20]                        29.4071    3.936   7.471  0.000
+hr[21]                        -8.5883    3.933  -2.184  0.029
+hr[22]                       -37.0194    3.934  -9.409  0.000
+workingday                     1.2696    1.784   0.711  0.477
+temp                         157.2094   10.261  15.321  0.000
+weathersit[cloudy/misty]     -12.8903    1.964  -6.562  0.000
+weathersit[heavy rain/snow] -109.7446   76.667  -1.431  0.152
+weathersit[light rain/snow]  -66.4944    2.965 -22.425  0.000</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>1.481150636351971e-20</code></pre>
+</div>
+</div>
+<p>mnth[Jan] -46.0871 4.085 -11.281 0.000 mnth[Feb] -39.2419 3.539 -11.088 0.000 mnth[March] -29.5357 3.155 -9.361 0.000 mnth[April] -4.6622 2.741 -1.701 0.089 mnth[May] 26.4700 2.851 9.285 0.000 mnth[June] 21.7317 3.465 6.272 0.000 mnth[July] -0.7626 3.908 -0.195 0.845 mnth[Aug] 7.1560 3.535 2.024 0.043 mnth[Sept] 20.5912 3.046 6.761 0.000 mnth[Oct] 29.7472 2.700 11.019 0.000 mnth[Nov] 14.2229 2.860 4.972 0.000를 다 더해서 1을 빼면 12월을 구할 수 잇따.</p>
+<div id="cell-39" class="cell" data-outputid="b9b27eaf-cb21-4201-ac10-56fb411e332f" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>coef_month <span class="op">=</span> S2[S2.index.<span class="bu">str</span>.contains(<span class="st">'mnth'</span>)][<span class="st">'coef'</span>]</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coef_month)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 제약조건이 걸린 계수 확인</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>months <span class="op">=</span> Bike[<span class="st">'mnth'</span>].dtype.categories</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>coef_month <span class="op">=</span> pd.concat([coef_month, pd.Series([<span class="op">-</span>coef_month.<span class="bu">sum</span>()], index<span class="op">=</span>[<span class="st">'mnth[Dec]'</span>])</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coef_month)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 위 계수의 합에 음수를 취해 마지막 계수를 생성</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mnth[Jan]     -46.0871
+mnth[Feb]     -39.2419
+mnth[March]   -29.5357
+mnth[April]    -4.6622
+mnth[May]      26.4700
+mnth[June]     21.7317
+mnth[July]     -0.7626
+mnth[Aug]       7.1560
+mnth[Sept]     20.5912
+mnth[Oct]      29.7472
+mnth[Nov]      14.2229
+Name: coef, dtype: float64
+mnth[Jan]     -46.0871
+mnth[Feb]     -39.2419
+mnth[March]   -29.5357
+mnth[April]    -4.6622
+mnth[May]      26.4700
+mnth[June]     21.7317
+mnth[July]     -0.7626
+mnth[Aug]       7.1560
+mnth[Sept]     20.5912
+mnth[Oct]      29.7472
+mnth[Nov]      14.2229
+mnth[Dec]       0.3705
+dtype: float64</code></pre>
+</div>
+</div>
+<ul>
+<li>월에 대응되는 계수둘을 선도표로 연결해서 시각화함</li>
+</ul>
+<div id="cell-41" class="cell" data-outputid="99bf2ca4-75c1-4ffa-a219-d930b1a0c147" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>fig_month , ax_month <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>x_month <span class="op">=</span> np.arange(coef_month.shape[<span class="dv">0</span>])</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>ax_month.plot(x_month , coef_month , marker<span class="op">=</span><span class="st">'o'</span>, ms<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>ax_month.set_xticks(x_month)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>ax_month.set_xticklabels([l[<span class="dv">5</span>] <span class="cf">for</span> l <span class="kw">in</span> coef_month.index], fontsize</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>ax_month.set_xlabel(<span class="st">'Month'</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>ax_month.set_ylabel(<span class="st">'Coefficient'</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ML03 (1)_files/figure-html/cell-23-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>다 더하면 0이나온다.</p>
+<ul>
+<li>시간에 대응되는 계수둘을 선도표로 연결해서 시각화함</li>
+</ul>
+<div id="cell-44" class="cell" data-outputid="adbee6f4-9f79-4b8a-9881-dbf530a3c286" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>coef_hr <span class="op">=</span> S2[S2.index.<span class="bu">str</span>.contains(<span class="st">'hr'</span>)][<span class="st">'coef'</span>]</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>coef_hr <span class="op">=</span> coef_hr.reindex([<span class="st">'hr[</span><span class="sc">{0}</span><span class="st">]'</span>.<span class="bu">format</span>(h) <span class="cf">for</span> h <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">23</span>)])</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>coef_hr <span class="op">=</span> pd.concat([coef_hr, pd.Series([<span class="op">-</span>coef_hr.<span class="bu">sum</span>()], index<span class="op">=</span>[<span class="st">'hr[23]'</span>])</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>fig_hr , ax_hr <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>x_hr <span class="op">=</span> np.arange(coef_hr.shape[<span class="dv">0</span>])</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>ax_hr.plot(x_hr , coef_hr , marker<span class="op">=</span><span class="st">'o'</span>, ms<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>ax_hr.set_xticks(x_hr[::<span class="dv">2</span>])</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>ax_hr.set_xticklabels(<span class="bu">range</span>(<span class="dv">24</span>)[::<span class="dv">2</span>], fontsize <span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>ax_hr.set_xlabel(<span class="st">'Hour'</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>ax_hr.set_ylabel(<span class="st">'Coefficient'</span>, fontsize<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ML03 (1)_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>RSS를 그대로 쓰기에는 문제가 있다. f햇(x)과 입실론은 독립이다.</p>
+<p>9월24일 찍은 사진 식으로 검증을 하자는 거 같다. 이건 훈련데이터셋을 가져온다. 여기서 시작해서 크로스엔트로피 까지 vallosspy?</p>
+<p>mallows</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

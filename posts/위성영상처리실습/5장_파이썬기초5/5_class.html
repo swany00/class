@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>제5장. 파이썬 기초 V – class</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">class</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">제5장. 파이썬 기초 V</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>이번 실습에서는 프로그램 클래스, 모듈에 대한 기초에 대해서 학습 할 예정이다. 위성자료 및 지구환경과학 자료처리를 위한 필수 프로그래밍 코드 학습 과정이다.</p>
+<section id="강의자료를-vscode로-실행해보는법" class="level3">
+<h3 class="anchored" data-anchor-id="강의자료를-vscode로-실행해보는법">강의자료를 VScode로 실행해보는법</h3>
+<ol type="1">
+<li><a href="https://github.com/jongminyeom/python_lecture/">미리 만들어놓은 강의자료 Github 링크</a> 에서 강의자료는 다운로드 한다.</li>
+<li>Visual Studio Code를 실행한다.</li>
+<li>파일 열기 혹은 소스코드 드레그 인을 통해 코딩 파일을 연다.</li>
+<li>코딩 파일을 수행한다.</li>
+</ol>
+</section>
+<section id="이-문서를-구글-colab에서-쉽게-실행해보는-방법은" class="level3">
+<h3 class="anchored" data-anchor-id="이-문서를-구글-colab에서-쉽게-실행해보는-방법은">이 문서를 구글 Colab에서 쉽게 실행해보는 방법은</h3>
+<ol type="1">
+<li><a href="https://colab.research.google.com/drive/1GBdjTSbSx8dCYS_QYfhGbj-Q_HG2EQO9#scrollTo=a2b2e1ac">미리 만들어놓은 Colab 링크</a>를 눌러 본 .ipynb 파일을 구글 Colab에서 바로 열 수 있다. 이때 구글에 로그인을 해야 한다.</li>
+<li>아무 셀이나 선택한 후 Ctrl+Enter를 눌러 실행해보면 [경고: 이 노트는 Google에서 작성하지 않았습니다]라고 뜨는데 실행 전에 모든 런타임 재설정을 선택한 채로 무시하고 계속하기를 눌러준다.</li>
+<li><code>모든 런타임 재설정</code> 이 뜰 텐데 예를 눌러준다.</li>
+<li>잠시 구글 서버의 배치가 되면서 우상단에 연결중 -&gt; 초기화중 -&gt; 연결됨이 뜨면서 실행이 가능한 상태가 된다.</li>
+</ol>
+</section>
+<section id="구글-colab에서-실습후-저장하는법" class="level3">
+<h3 class="anchored" data-anchor-id="구글-colab에서-실습후-저장하는법">구글 Colab에서 실습후 저장하는법</h3>
+<p><strong>쉽게 실행보는법</strong>을 따라왔다면 Colab에서 임시 노트북으로 열리기 때문에 파일-&gt;드라이브로 저장을 눌러서 여러분의 구글 드라이브에 저장하거나 파일 -&gt; .ipynb 다운로드를 눌러서 다운로드 해준다.</p>
+<section id="참고-사항" class="level4">
+<h4 class="anchored" data-anchor-id="참고-사항">참고 사항</h4>
+<p>블록지정 ctrl + / : 여러줄 주석처리</p>
+<p>다중 블럭 들여쓰기: 블록지정, Tab</p>
+<p>다중 블럭 내어쓰기: 블록지정, Tab + shift</p>
+</section>
+</section>
+<section id="클래스" class="level1">
+<h1>클래스</h1>
+<section id="클래스는-왜-필요한가" class="level3">
+<h3 class="anchored" data-anchor-id="클래스는-왜-필요한가">클래스는 왜 필요한가?</h3>
+<p>프로그래머들이 가장 많이 사용하는 프로그래밍 언어 중 하나인 C 언어에는 클래스가 없다.</p>
+<p>이 말은 굳이 클래스가 없어도 프로그램을 충분히 만들 수 있다는 뜻이다.</p>
+<p>파이썬으로 잘 만든 프로그램을 살펴봐도 클래스를 사용하지 않고 작성한 것이 매우 많다.</p>
+<p>즉, 클래스는 지금까지 공부한 함수나 자료형처럼 프로그램 작성을 위해 꼭 필요한 요소는 아니다.</p>
+<p><code>하지만 프로그램을 작성할 때 클래스를 적재적소에 사용하면 프로그래머가 얻을 수 있는 이익은 많다.</code></p>
+<section id="계산기-프로그램을-만들며-클래스-알아보기" class="level4">
+<h4 class="anchored" data-anchor-id="계산기-프로그램을-만들며-클래스-알아보기">계산기 프로그램을 만들며 클래스 알아보기</h4>
+<p>여러분 모두 계산기를 사용해 보았을 것이다.</p>
+<p>계산기에 숫자 3을 입력하고 +를 입력한 후 4를 입력하면 결괏값으로 7을 보여 준다.</p>
+<p>다시 한번 +를 입력한 후 3을 입력하면 기존 결괏값 7에 3을 더해 10을 보여 준다.</p>
+<p>즉, 계산기는 이전에 계산한 결괏값을 항상 메모리 어딘가에 저장하고 있어야 한다.</p>
+<p><img src="calc.png" alt="대체_텍스트" width="300" height="500"></p>
+<p><code>계산기는 이전에 계산한 결괏값을 기억하고 있어야 한다.</code></p>
+<p>이런 내용을 우리가 앞에서 익힌 함수를 이용해 구현해 보자.</p>
+<p>계산기의 <code>더하기</code> 기능을 구현한 파이썬 코드는 다음과 같다.</p>
+<div id="b8fdba8c" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculator.py</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(num):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> result</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    result <span class="op">+=</span> num  <span class="co"># 결괏값(result)에 입력값(num) 더하기</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result  <span class="co"># 결괏값 리턴</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(add(<span class="dv">3</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(add(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3
+7</code></pre>
+</div>
+</div>
+<p>입력값을 이전에 계산한 결괏값에 더한 후 리턴하는 add 함수를 위와 같이 작성했다.</p>
+<p>이전에 계산한 결괏값을 유지하기 위해서 <code>result 전역 변수(global)</code>를 사용했다.</p>
+<p>프로그램을 실행하면 예상한 대로 다음과 같은 결괏값이 출력된다.</p>
+<p>3</p>
+<p>7</p>
+<p>그런데 만일 한 프로그램에서 <code>2대의 계산기</code>가 필요한 상황이 발생하면 어떻게 해야 할까?</p>
+<p>각 계산기는 각각의 결괏값을 유지해야 하므로 위와 같이 add 함수 하나만으로는 결괏값을 따로 유지할 수 없다.</p>
+<p>이런 상황을 해결하려면 다음과 같이 함수를 각각 따로 만들어야 한다.</p>
+<div id="abe073ab" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculator2.py</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>result1 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>result2 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add1(num):  <span class="co"># 계산기1</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> result1</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    result1 <span class="op">+=</span> num</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result1</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add2(num):  <span class="co"># 계산기2</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> result2</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    result2 <span class="op">+=</span> num</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result2</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(add1(<span class="dv">3</span>))</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(add1(<span class="dv">4</span>))</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(add2(<span class="dv">3</span>))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(add2(<span class="dv">7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3
+7
+3
+10</code></pre>
+</div>
+</div>
+<p>똑같은 일을 하는 add1과 add2 함수를 만들고</p>
+<p>각 함수에서 계산한 결괏값을 유지하면서 저장하는 전역 변수 result1과 result2를 정의했다.</p>
+<p>결괏값은 다음과 같이 의도한 대로 출력된다.</p>
+<p>3</p>
+<p>7</p>
+<p>3</p>
+<p>10</p>
+<p>계산기 1의 결괏값이 계산기 2에 아무런 영향을 끼치지 않는다는 것을 확인할 수 있다.</p>
+<p>하지만 계산기가 3개, 5개, 10개로 점점 더 많이 필요해진다면 어떻게 해야 할까?</p>
+<p>그때마다 전역 변수와 함수를 추가할 것인가?</p>
+<p>여기에 계산기마다 빼기나 곱하기와 같은 기능을 추가해야 한다면 상황은 점점 더 어려워질 것이다.</p>
+<p>아직 클래스에 대해 배우지 않았지만, 위와 같은 경우에 클래스를 사용하면 다음과 같이 간단하게 해결할 수 있다.</p>
+<div id="22e965b8" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculator3.py</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Calculator:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.result <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add(<span class="va">self</span>, num):</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.result <span class="op">+=</span> num</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.result</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>cal1 <span class="op">=</span> Calculator()</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>cal2 <span class="op">=</span> Calculator()</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cal1.add(<span class="dv">3</span>))</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cal1.add(<span class="dv">4</span>))</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cal2.add(<span class="dv">3</span>))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cal2.add(<span class="dv">7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3
+7
+3
+10</code></pre>
+</div>
+</div>
+<p>프로그램을 실행하면 함수 2개를 사용했을 때와 동일한 결과가 출력된다.</p>
+<p>Calculator 클래스로 만든 별개의 계산기 cal1, cal2(<code>파이썬에서는 이것을 ‘객체’라고 부른다</code>)가 각각의 역할을 수행한다.</p>
+<p>그리고 계산기의 결괏값 역시 다른 계산기의 결괏값과 상관없이 독립적인 값을 유지한다.</p>
+<p>이렇게 클래스를 사용하면 계산기 대수가 늘어나도 객체를 생성하면 되므로 함수만 사용할 때보다 간단하게 프로그램을 작성할 수 있다.</p>
+<p>빼기 기능을 더하고 싶다면 Calculator 클래스에 다음과 같이 빼기 기능을 가진 함수를 추가하면 된다.</p>
+<div id="cce038f8" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Calculator:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.result <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add(<span class="va">self</span>, num):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.result <span class="op">+=</span> num</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.result</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> sub(<span class="va">self</span>, num):</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.result <span class="op">-=</span> num</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="6307e20c" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cal1 <span class="op">=</span> Calculator()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cal1.add(<span class="dv">3</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cal1.sub(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3
+1</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="클래스와-객체" class="level3">
+<h3 class="anchored" data-anchor-id="클래스와-객체">클래스와 객체</h3>
+<p>클래스를 가장 잘 설명해 주는 다음 그림을 살펴보자.</p>
+<p>과자를 만드는 과자 틀과 이를 사용해 만든 과자이다.</p>
+<p><img src="05_1_cookie3.png" alt="대체_텍스트" width="500" height="500"></p>
+<ul>
+<li>과자 틀 = 클래스</li>
+<li>과자 틀로 찍어 낸 과자 = 객체</li>
+</ul>
+<p>여기에서 설명할 클래스는 과자 틀과 비슷하다.</p>
+<p><code>클래스(class)</code>란 똑같은 무언가를 계속 만들어 낼 수 있는 <code>설계 도면(과자 틀)</code>,</p>
+<p><code>객체(object)란 클래스로 만든 피조물(과자 틀로 찍어 낸 과자)을 뜻</code>한다.</p>
+<p>클래스로 만든 객체에는 중요한 특징이 있다.</p>
+<p>바로 <code>객체마다 고유한 성격을 가진다는 것</code>이다.</p>
+<p>과자 틀로 만든 과자에 구멍을 뚫거나 조금 베어 먹더라도 다른 과자에는 아무런 영향이 없는 것과 마찬가지로 동일한 클래스로 만든 객체들은 서로 전혀 영향을 주지 않는다.</p>
+<p>다음은 파이썬 클래스의 가장 간단한 예이다.</p>
+<div id="4d90600f" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Cookie:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>위에서 작성한 Cookie 클래스는 아무런 기능도 가지고 있지 않은 껍질뿐인 클래스이다.</p>
+<p>하지만 이렇게 껍질뿐인 클래스도 객체를 생성하는 기능이 있다.</p>
+<p><code>과자 틀</code>로 <code>과자</code>를 만드는 것처럼 말이다.</p>
+<p>객체는 클래스로 만들고 1개의 클래스는 무수히 많은 객체를 만들어 낼 수 있다.</p>
+<p>위에서 만든 Cookie 클래스의 객체를 만드는 방법은 다음과 같다.</p>
+<div id="1d81a49d" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> Cookie()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> Cookie()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>Cookie()의 결괏값</code>을 리턴받은 a와 b가 바로 <code>객체</code>이다.</p>
+<p>마치 함수를 사용해서 그 결괏값을 리턴받는 모습과 비슷하다.</p>
+</section>
+<section id="객체와-인스턴스instance의-차이" class="level3">
+<h3 class="anchored" data-anchor-id="객체와-인스턴스instance의-차이"><code>객체</code>와 <code>인스턴스(instance)</code>의 차이</h3>
+<p>클래스로 만든 객체를 <code>인스턴스</code>라고도 한다.</p>
+<p>그렇다면 객체와 인스턴스의 차이는 무엇일까?</p>
+<p>이렇게 생각해 보자.</p>
+<p>a = Cookie( )로 만든 <code>a는 객체</code>이다.</p>
+<p>그리고 <code>a 객체는 Cookie의 인스턴스</code>이다.</p>
+<p>즉, 인스턴스라는 말은 특정 객체(a)가 어떤 클래스(Cookie)의 객체인지를 관계 위주로 설명할 때 사용한다.</p>
+<ul>
+<li><code>‘a는 인스턴스’보다 ‘a는 객체’라는 표현이 어울리며</code></li>
+<li><code>‘a는 Cookie의 객체’보다 ‘a는 Cookie의 인스턴스’라는 표현이 훨씬 잘 어울린다.</code></li>
+</ul>
+</section>
+<section id="사칙-연산-클래스-만들기" class="level3">
+<h3 class="anchored" data-anchor-id="사칙-연산-클래스-만들기">사칙 연산 클래스 만들기</h3>
+<p><code>백견(百見)이 불여일타(一打)</code>라고 했다.</p>
+<p>클래스를 직접 만들며 배워 보자.</p>
+<p>여기에서는 사칙 연산을 하는 클래스를 만들어 볼 것이다.</p>
+<p>사칙 연산은 더하기, 빼기, 곱하기, 나누기를 말한다.</p>
+</section>
+<section id="클래스를-어떻게-만들지-먼저-구상하기" class="level3">
+<h3 class="anchored" data-anchor-id="클래스를-어떻게-만들지-먼저-구상하기">클래스를 어떻게 만들지 먼저 구상하기</h3>
+<p>클래스는 무작정 만드는 것보다 클래스로 만든 객체를 중심으로 어떤 식으로 동작하게 할지 미리 구상한 후 생각한 것을 하나씩 만들면서 완성해 나가는 것이 좋다.</p>
+<p><img src="05_1_class1.png" alt="대체_텍스트" width="700" height="500"></p>
+</section>
+<section id="클래스-구조-만들기" class="level3">
+<h3 class="anchored" data-anchor-id="클래스-구조-만들기">클래스 구조 만들기</h3>
+<p>그러면 지금부터 앞에서 구상한 것처럼 동작하는 클래스를 만들어 보자.</p>
+<p>제일 먼저 할 일은 a = FourCal()처럼 객체를 만들 수 있게 하는 것이다.</p>
+<p>일단은 아무런 기능이 없어도 되기 때문에 매우 간단하게 만들 수 있다.</p>
+<p>다음을 따라 해 보자.</p>
+<div id="dde50d88" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FourCal:</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>먼저 대화형 인터프리터에서 pass라는 문장만을 포함한 FourCal 클래스를 만든다.</p>
+<p>현재 상태에서 FourCal 클래스는 아무 변수나 함수도 포함하지 않지만, 우리가 원하는 객체 a를 만들 수 있는 기능은 가지고 있다.</p>
+<p>한번 확인해 보자.</p>
+<div id="8e9d3927" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> FourCal()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>__main__.FourCal</code></pre>
+</div>
+</div>
+<p>위와 같이 a = FourCal()로 a 객체를 먼저 만든 후 type(a)로 a 객체가 어떤 타입인지 알아보았다.</p>
+<p>역시 <code>객체 a</code>가 FourCal 클래스의 <code>인스턴스</code>라는 것을 알 수 있다.</p>
+</section>
+<section id="객체에-연산할-숫자-지정하기" class="level3">
+<h3 class="anchored" data-anchor-id="객체에-연산할-숫자-지정하기">객체에 연산할 숫자 지정하기</h3>
+<p>하지만 생성된 객체 a는 아직 아무런 기능도 하지 못한다.</p>
+<p>이제 더하기, 빼기, 곱하기, 나누기 등의 기능을 하는 객체를 만들어야 한다.</p>
+<p>그런데 이러한 기능을 갖춘 객체를 만들려면 먼저 사칙 연산을 할 때 사용할 2개의 숫자를 a 객체에게 알려 주어야 한다.</p>
+<p>다음과 같이 연산을 수행할 대상(4, 2)을 객체에 지정할 수 있게 만들어 보자.</p>
+<p>위 문장이 동작하려면 다음과 같이 FourCal 클래스를 다시 정의해야 한다.</p>
+<div id="d43b5661" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FourCal:</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setdata(<span class="va">self</span>, first, second):</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.first <span class="op">=</span> first</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.second <span class="op">=</span> second</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>앞에서 만든 FourCal 클래스에서 pass 문장을 삭제하고 그 대신 setdata 함수를 정의했다.</p>
+<p>클래스 안에 구현된 함수는 다른 말로 <code>메서드(method)</code>라고 부른다.</p>
+<p>앞으로 클래스 내부의 함수는 항상 메서드라고 표현할 테니 메서드라는 용어를 기억해 두자.</p>
+<p>일반적인 함수를 만들 때는 다음과 같이 소스 코드를 작성한다.</p>
+<div id="e89f3a65" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> 함수_이름(매개변수):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    수행할_문장</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>메서드도 클래스에 포함되어 있다는 점</code>만 제외하면 일반 함수와 다를 것이 없다.</p>
+<p>setdata 메서드를 다시 보면 다음과 같다.</p>
+<div id="8368b012" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> setdata(<span class="va">self</span>, first, second):   <span class="co"># 메서드의 매개변수</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.first <span class="op">=</span> first              <span class="co"># 메서드의 수행문</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.second <span class="op">=</span> second            <span class="co"># 메서드의 수행문</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="setdata-메서드의-매개변수" class="level3">
+<h3 class="anchored" data-anchor-id="setdata-메서드의-매개변수">setdata 메서드의 매개변수</h3>
+<p>setdata 메서드를 좀 더 자세히 살펴보자.</p>
+<p>setdata 메서드는 매개변수로 self, first, second 3개의 입력값을 받는다.</p>
+<p>그런데 일반 함수와 달리, 메서드의 첫 번째 매개변수 <code>self</code>는 특별한 의미를 가진다.</p>
+<p>다음과 같이 a 객체를 만들고 a 객체를 통해 setdata 메서드를 호출해 보자.</p>
+<div id="a473b045" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> FourCal()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>a.setdata(<span class="dv">4</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>객체를 이용해 클래스의 메서드를 호출하려면 a.setdata(4, 2)와 같이 '도트(.)' 연산자를 사용하면 된다.</code></li>
+</ul>
+<p>그런데 뭔가 좀 이상하지 않은가?</p>
+<p>setdata 메서드에는 self, first, second 총 3개의 매개변수가 필요한데 실제로는 a.setdata(4, 2)처럼 2개의 값만 전달했다.</p>
+<p>왜 그럴까?</p>
+<p>a.setdata(4, 2)처럼 호출하면 setdata 메서드의 첫 번째 매개변수 self에는 setdata 메서드를 호출한 객체 a가 자동으로 전달되기 때문이다.</p>
+<p>다음 그림을 보면 객체를 호출할 때 입력한 값이 메서드에 어떻게 전달되는지 쉽게 이해할 수 있을 것이다.</p>
+<p><img src="05_1_class2.png" alt="대체_텍스트" width="1000" height="300"></p>
+<p>파이썬 메서드의 첫 번째 매개변수 이름은 관례적으로 self를 사용한다.</p>
+<p>객체를 호출할 때 호출한 <code>객체 자신</code>이 전달되기 때문에 self라는 이름을 사용한 것이다.</p>
+<p>물론 self말고 다른 이름을 사용해도 상관없다.</p>
+<p>메서드의 첫 번째 매개변수 self를 명시적으로 구현하는 것은 파이썬만의 독특한 특징이다.</p>
+<p>예를 들어 자바와 같은 언어는 첫 번째 매개변수 self가 필요없다.</p>
+</section>
+<section id="메서드를-호출하는-또-다른-방법" class="level3">
+<h3 class="anchored" data-anchor-id="메서드를-호출하는-또-다른-방법">메서드를 호출하는 또 다른 방법</h3>
+<p>잘 사용하지는 않지만, 다음과 같이 클래스를 이용해 메서드를 호출할 수도 있다.</p>
+<p>a = FourCal() FourCal.setdata(a, 4, 2)</p>
+<p>위와 같이 <code>클래스명.메서드</code> 형태로 호출할 때는 객체 a를 첫 번째 매개변수 self에 꼭 전달해야 한다.</p>
+<p>반면 다음처럼 <code>객체.메서드</code> 형태로 호출할 때는 self를 <code>반드시 생략</code>해서 호출해야 한다.</p>
+<div id="c691c97f" class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> FourCal()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>a.setdata(<span class="dv">4</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="setdata-메서드의-수행문" class="level3">
+<h3 class="anchored" data-anchor-id="setdata-메서드의-수행문">setdata 메서드의 수행문</h3>
+<p>이제 setdata 메서드의 수행문에 대해 알아보자.</p>
+<div id="dc2f3f3e" class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> setdata(<span class="va">self</span>, first, second):   <span class="co"># 메서드의 매개변수</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.first <span class="op">=</span> first              <span class="co"># 메서드의 수행문</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.second <span class="op">=</span> second            <span class="co"># 메서드의 수행문</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>a.setdata(4, 2)처럼 호출하면 setdata 메서드의 매개변수 first, second에는 각각 값 4와 2가 전달되어</p>
+<p>setdata 메서드의 수행문이 다음과 같이 해석된다.</p>
+<div id="d9a8b2be" class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.first <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.second <span class="op">=</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>self는 전달된 객체 a이므로 다시 다음과 같이 해석된다.</p>
+<div id="197f6e0e" class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>a.first <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>a.second <span class="op">=</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>a.first = 4라는 문장이 수행되면 a 객체에 객체변수 first가 생성되고 4라는 값이 저장된다.</p>
+<p>이와 마찬가지로 a.second = 2라는 문장이 수행되면 a 객체에 객체변수 second가 생성되고 2라는 값이 저장된다.</p>
+<p><code>객체에 생성되는 객체만의 변수를 ‘객체변수’ 또는 ‘속성’이라고 부른다.</code></p>
+<p>다음과 같이 확인해 보자.</p>
+<div id="9f392535" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> FourCal()</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>a.setdata(<span class="dv">4</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="e271a67f" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>a.first</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>4</code></pre>
+</div>
+</div>
+<div id="102510b1" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>a.second</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>2</code></pre>
+</div>
+</div>
+<p>a 객체에 객체변수 first와 second가 생성된 것을 확인할 수 있다.</p>
+<p>이번에는 다음과 같이 a, b 객체를 만들어 보자.</p>
+<div id="5a13e670" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> FourCal()</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> FourCal()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>그리고 a 객체의 객체변수 first를 다음과 같이 생성한다.</p>
+<div id="2f97d133" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>a.setdata(<span class="dv">4</span>, <span class="dv">2</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>a.first</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>4</code></pre>
+</div>
+</div>
+<p>이번에는 b 객체의 객체변수 first를 다음과 같이 생성한다.</p>
+<div id="e87b1165" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>b.setdata(<span class="dv">3</span>, <span class="dv">7</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>b.first</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>3</code></pre>
+</div>
+</div>
+<p>자, 이제 여러분에게 매우 중요한 질문을 1가지 하겠다.</p>
+<p>위와 같이 진행하면 b 객체의 객체변수 first에는 값 3이 저장된다는 것을 확인할 수 있었다.</p>
+<p>그렇다면</p>
+<p><code>a 객체의 first에 저장된 값도 3으로 변할까, 아니면 원래대로 값 4를 유지할까?</code></p>
+<div id="35c1ce49" class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>a.first</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>a 객체의 first 값은 b 객체의 first 값에 영향받지 않고 원래 값을 유지하고 있다는 것을 확인할 수 있다.</p>
+<p>이 예제를 통해 강조하고 싶은 점이 바로 이것이다.</p>
+<p><code>클래스로 만든 객체의 객체변수는 다른 객체의 객체변수에 상관없이 독립적인 값을 유지한다.</code></p>
+<p>클래스에서는 이 부분을 이해하는 것이 가장 중요하다.</p>
+<p><img src="05_1_cookie2.png" alt="대체_텍스트" width="500" height="300"></p>
+<p>다음은 현재까지 완성된 FourCal 클래스이다.</p>
+<div id="1635c550" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FourCal:</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setdata(<span class="va">self</span>, first, second):</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.first <span class="op">=</span> first</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.second <span class="op">=</span> second</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>지금까지 살펴본 내용이 바로 이 4줄의 소스 코드를 설명하기 위한 것이었다.</p>
+</section>
+<section id="더하기-기능-만들기" class="level3">
+<h3 class="anchored" data-anchor-id="더하기-기능-만들기">더하기 기능 만들기</h3>
+<p>자! 2개의 숫자 값을 설정해 주었으므로 2개의 숫자를 더하는 기능을 방금 만든 클래스에 추가해 보자.</p>
+<p>우리는 다음과 같이 더하기 기능을 갖춘 클래스를 만들어야 한다.</p>
+<div id="385ed581" class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#a = FourCal()</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#a.setdata(4, 2)</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">#a.add()</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co">#6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>이 연산이 가능하도록 FourCal 클래스를 다시 작성해 보자.</p>
+<div id="416cab1e" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FourCal:</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setdata(<span class="va">self</span>, first, second):</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.first <span class="op">=</span> first</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.second <span class="op">=</span> second</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add(<span class="va">self</span>):</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="va">self</span>.first <span class="op">+</span> <span class="va">self</span>.second</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>add 메서드를 새롭게 추가했다.</p>
+<p>이제 클래스를 사용해 보자.</p>
+<div id="d4b4debd" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> FourCal()</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>a.setdata(<span class="dv">4</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>위와 같이 호출하면 앞에서 살펴보았듯이 a 객체의 first, second 객체변수에는 각각 값 4와 2가 저장될 것이다.</p>
+<p>이제 add 메서드를 호출해 보자.</p>
+<div id="91e52149" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>a.add()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>6</code></pre>
+</div>
+</div>
+<p>a.add()라고 호출하면 add 메서드가 호출되어 값 6이 출력될 것이다.</p>
+<p>어떤 과정을 거쳐 값 6이 출력되는지 add 메서드를 따로 떼어 내 자세히 살펴보자.</p>
+<div id="2c0f9cc2" class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(<span class="va">self</span>):</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="va">self</span>.first <span class="op">+</span> <span class="va">self</span>.second</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>add 메서드의 <code>매개변수는 self</code>, <code>리턴값은 result</code>이다.</p>
+<p>리턴값인 result를 계산하는 부분은 다음과 같다.</p>
+<div id="6b653d24" class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="va">self</span>.first <span class="op">+</span> <span class="va">self</span>.second</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>a.add()와 같이 a 객체에 의해 add 메서드가 수행되면 add 메서드의 self에는 객체 a가 자동으로 입력되므로 이 내용은 다음과 같이 해석된다.</p>
+<div id="7fa4b663" class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> a.first <span class="op">+</span> a.second</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>a.first와 a.second는 add 메서드가 호출되기 전에 <code>a.setdata(4, 2)</code> 문장에서 <code>a.first = 4</code>, <code>a.second = 2</code>로 설정된다.</p>
+<p>따라서 위 문장은 다시 다음과 같이 해석된다.</p>
+<div id="03ae9572" class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="dv">4</span> <span class="op">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>따라서 다음과 같이 a.add()를 호출하면 6을 리턴한다.</p>
+<div id="8d9311e9" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>a.add()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<pre><code>6</code></pre>
+</div>
+</div>
+</section>
+<section id="곱하기-빼기-나누기-기능-만들기" class="level3">
+<h3 class="anchored" data-anchor-id="곱하기-빼기-나누기-기능-만들기">곱하기, 빼기, 나누기 기능 만들기</h3>
+<p>이번에는 곱하기, 빼기, 나누기 등을 할 수 있도록 프로그램을 개선해 보자.</p>
+<div id="4d027366" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FourCal:</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setdata(<span class="va">self</span>, first, second):</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.first <span class="op">=</span> first</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.second <span class="op">=</span> second</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add(<span class="va">self</span>):</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="va">self</span>.first <span class="op">+</span> <span class="va">self</span>.second</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mul(<span class="va">self</span>):</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="va">self</span>.first <span class="op">*</span> <span class="va">self</span>.second</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> sub(<span class="va">self</span>):</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="va">self</span>.first <span class="op">-</span> <span class="va">self</span>.second</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> div(<span class="va">self</span>):</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="va">self</span>.first <span class="op">/</span> <span class="va">self</span>.second</span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>정말 모든 것이 제대로 동작하는지 확인해 보자.</p>
+<div id="349308b3" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> FourCal()</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> FourCal()</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>a.setdata(<span class="dv">4</span>, <span class="dv">2</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>b.setdata(<span class="dv">3</span>, <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ab668615" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 직접 한번 곱하기, 빼기, 나누기를 해보세요.</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>a.add()</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<pre><code>6</code></pre>
+</div>
+</div>
+<p>지금까지 우리가 목표로 한 사칙 연산 기능을 가진 클래스를 만들어 보았다.</p>
+</section>
+<section id="생성자" class="level3">
+<h3 class="anchored" data-anchor-id="생성자"><code>생성자</code></h3>
+<p>이번에는 우리가 만든 FourCal 클래스를 다음과 같이 사용해 보자.</p>
+<div id="2dd41c5f" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> FourCal()</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>a.add()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg ansi-bold">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg ansi-bold">z:\yeomjm\교육\강의자료\학부\위성영상처리및실습_2_2\강의자료\5장_파이썬기초_V_클래스\위성영상처리_파이썬기초_05.ipynb 셀 115</span> line <span class="ansi-cyan-fg">2
+</span><span class="ansi-green-fg">      &lt;a href='vscode-notebook-cell:/z%3A/yeomjm/%EA%B5%90%EC%9C%A1/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/%ED%95%99%EB%B6%80/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC%EB%B0%8F%EC%8B%A4%EC%8A%B5_2_2/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/5%EC%9E%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_V_%ED%81%B4%EB%9E%98%EC%8A%A4/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_05.ipynb#Y222sZmlsZQ%3D%3D?line=0'&gt;1&lt;/a&gt;</span> a = FourCal()
+<span class="ansi-green-fg ansi-bold">----&gt; &lt;a href='vscode-notebook-cell:/z%3A/yeomjm/%EA%B5%90%EC%9C%A1/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/%ED%95%99%EB%B6%80/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC%EB%B0%8F%EC%8B%A4%EC%8A%B5_2_2/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/5%EC%9E%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_V_%ED%81%B4%EB%9E%98%EC%8A%A4/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_05.ipynb#Y222sZmlsZQ%3D%3D?line=1'&gt;2&lt;/a&gt;</span> a.add()
+
+<span class="ansi-green-fg ansi-bold">z:\yeomjm\교육\강의자료\학부\위성영상처리및실습_2_2\강의자료\5장_파이썬기초_V_클래스\위성영상처리_파이썬기초_05.ipynb 셀 115</span> line <span class="ansi-cyan-fg">6
+</span><span class="ansi-green-fg">      &lt;a href='vscode-notebook-cell:/z%3A/yeomjm/%EA%B5%90%EC%9C%A1/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/%ED%95%99%EB%B6%80/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC%EB%B0%8F%EC%8B%A4%EC%8A%B5_2_2/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/5%EC%9E%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_V_%ED%81%B4%EB%9E%98%EC%8A%A4/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_05.ipynb#Y222sZmlsZQ%3D%3D?line=4'&gt;5&lt;/a&gt;</span> def add(self):
+<span class="ansi-green-fg ansi-bold">----&gt; &lt;a href='vscode-notebook-cell:/z%3A/yeomjm/%EA%B5%90%EC%9C%A1/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/%ED%95%99%EB%B6%80/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC%EB%B0%8F%EC%8B%A4%EC%8A%B5_2_2/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/5%EC%9E%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_V_%ED%81%B4%EB%9E%98%EC%8A%A4/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_05.ipynb#Y222sZmlsZQ%3D%3D?line=5'&gt;6&lt;/a&gt;</span>     result = self.first + self.second
+<span class="ansi-green-fg">      &lt;a href='vscode-notebook-cell:/z%3A/yeomjm/%EA%B5%90%EC%9C%A1/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/%ED%95%99%EB%B6%80/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC%EB%B0%8F%EC%8B%A4%EC%8A%B5_2_2/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/5%EC%9E%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_V_%ED%81%B4%EB%9E%98%EC%8A%A4/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_05.ipynb#Y222sZmlsZQ%3D%3D?line=6'&gt;7&lt;/a&gt;</span>     return result
+
+<span class="ansi-red-fg ansi-bold">AttributeError</span>: 'FourCal' object has no attribute 'first'</pre>
+</div>
+</div>
+</div>
+<p>FourCal 클래스의 인스턴스 a에 setdata 메서드를 수행하지 않고 add 메서드를 먼저 수행하면</p>
+<p>‘AttributeError: ’FourCal’ object has no attribute ‘first’’오류가 발생한다.</p>
+<p>setdata 메서드를 수행해야 객체 a의 객체변수 first와 second가 생성되기 때문이다.</p>
+<p>이렇게 객체에 first, second와 같은 <code>초깃값</code>을 설정해야 할 필요가 있을 때는</p>
+<p>setdata와 같은 메서드를 호출하여 <code>초깃값</code>을 설정하기보다 <code>생성자</code>를 구현하는 것이 안전한 방법이다.</p>
+<ul>
+<li><code>생성자(constructor)</code>란 <code>객체가 생성될 때 자동으로 호출되는 메서드를 의미</code>한다.</li>
+</ul>
+<p>파이썬 메서드명으로 <code>__init__</code>를 사용하면 이 메서드는 생성자가 된다.</p>
+<p>다음과 같이 FourCal 클래스에 생성자를 추가해 보자.</p>
+<div id="4adc26b8" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FourCal:</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, first, second):</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.first <span class="op">=</span> first</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.second <span class="op">=</span> second</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setdata(<span class="va">self</span>, first, second):</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.first <span class="op">=</span> first</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.second <span class="op">=</span> second</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add(<span class="va">self</span>):</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="va">self</span>.first <span class="op">+</span> <span class="va">self</span>.second</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mul(<span class="va">self</span>):</span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="va">self</span>.first <span class="op">*</span> <span class="va">self</span>.second</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> sub(<span class="va">self</span>):</span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="va">self</span>.first <span class="op">-</span> <span class="va">self</span>.second</span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> div(<span class="va">self</span>):</span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="va">self</span>.first <span class="op">/</span> <span class="va">self</span>.second</span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>새롭게 추가된 생성자 <code>__init__</code> 메서드만 따로 떼어 내서 살펴보자.</p>
+<div id="5556d111" class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, first, second):</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.first <span class="op">=</span> first</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.second <span class="op">=</span> second</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>__init__</code> 메서드는 setdata 메서드와 이름만 다르고 모든 게 동일하다.</p>
+<p>단, 메서드 이름을 <code>__init__</code>로 했기 때문에 <code>생성자</code>로 인식되어 <code>객체가 생성되는 시점에 자동으로 호출</code>된다는 차이가 있다.</p>
+<p>이제 다음처럼 a 객체를 생성해 보자.</p>
+<div id="24d5d801" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> FourCal()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg ansi-bold">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg ansi-bold">z:\yeomjm\교육\강의자료\학부\위성영상처리및실습_2_2\강의자료\5장_파이썬기초_V_클래스\위성영상처리_파이썬기초_05.ipynb 셀 124</span> line <span class="ansi-cyan-fg">1
+</span><span class="ansi-green-fg ansi-bold">----&gt; &lt;a href='vscode-notebook-cell:/z%3A/yeomjm/%EA%B5%90%EC%9C%A1/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/%ED%95%99%EB%B6%80/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC%EB%B0%8F%EC%8B%A4%EC%8A%B5_2_2/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/5%EC%9E%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_V_%ED%81%B4%EB%9E%98%EC%8A%A4/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_05.ipynb#Z1156sZmlsZQ%3D%3D?line=0'&gt;1&lt;/a&gt;</span> a = FourCal()
+
+<span class="ansi-red-fg ansi-bold">TypeError</span>: FourCal.__init__() missing 2 required positional arguments: 'first' and 'second'</pre>
+</div>
+</div>
+</div>
+<p><code>a = FourCal()</code>을 수행할 때 생성자 __init__가 호출되어 위와 같은 오류가 발생했다.</p>
+<p>오류가 발생한 이유는 생성자의 매개변수 first와 second에 해당하는 값이 전달되지 않았기 때문이다.</p>
+<p>위와 같이 수행하면 <code>__init__</code> 메서드의 매개변수에는 각각 다음과 같은 값이 전달된다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>매개변수</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>self</td>
+<td>생성되는 객체</td>
+</tr>
+<tr class="even">
+<td>first</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>second</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>__init__</code> 메서드도 다른 메서드와 마찬가지로 첫 번째 매개변수 self에 생성되는 객체가 자동으로 전달된다는 점을 기억하자.</li>
+</ul>
+<p>따라서 <code>__init__</code> 메서드가 호출되면 setdata 메서드를 호출했을 때와 마찬가지로 first와 second라는 객체변수가 생성될 것이다.</p>
+<p>다음과 같이 객체변수의 값을 확인해 보자.</p>
+<div id="137cedd8" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> FourCal(<span class="dv">4</span>, <span class="dv">2</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>a.first</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+<pre><code>4</code></pre>
+</div>
+</div>
+<div id="daa05897" class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>a.second</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="959fb350" class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add나 div 등과 같은 메서드도 잘 동작하는지 확인해 보자.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="클래스의-상속" class="level3">
+<h3 class="anchored" data-anchor-id="클래스의-상속">클래스의 상속</h3>
+<p><code>상속(Inheritance)</code>이란 ’물려받다’라는 뜻으로, ’재산을 상속받다’라고 할 때의 상속과 같은 의미이다.</p>
+<p>클래스에도 이 개념을 적용할 수 있다.</p>
+<p>어떤 클래스를 만들 때 다른 클래스의 기능을 물려받을 수 있게 만드는 것이다.</p>
+<p>이번에는 상속 개념을 사용하여 우리가 만든 FourCal 클래스에 a<sup>b</sup> 값을 구할 수 있는 기능을 추가해 보자.</p>
+<p>앞에서 FourCal 클래스는 이미 만들어 놓았으므로 FourCal 클래스를 상속하는 MoreFourCal 클래스는 다음과 같이 간단하게 만들 수 있다.</p>
+<div id="517e77b1" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MoreFourCal(FourCal):</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>클래스를 상속하기 위해서는 다음처럼 <code>클래스 이름 뒤 괄호 안에 상속할 클래스 이름</code>을 넣어주면 된다.</p>
+<div id="bc89e92d" class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> 클래스_이름(상속할_클래스_이름)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>MoreFourCal 클래스는 FourCal 클래스를 상속했으므로 FourCal 클래스의 모든 기능을 사용할 수 있다.</code></li>
+</ul>
+<div id="ea3180b1" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> MoreFourCal(<span class="dv">4</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8ac737b2" class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>a.add()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="58">
+<pre><code>6</code></pre>
+</div>
+</div>
+<div id="0ea9024b" class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>a.mul()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="d80646a1" class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>a.sub()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="6993b339" class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>a.div()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>상속받은 FourCal 클래스의 기능을 모두 사용할 수 있다는 것을 확인할 수 있다.</p>
+<section id="상속-기능은-왜-쓰는-걸까" class="level4">
+<h4 class="anchored" data-anchor-id="상속-기능은-왜-쓰는-걸까">상속 기능은 왜 쓰는 걸까?</h4>
+<p>보통 <code>상속</code>은 <code>기존 클래스를 변경하지 않고 기능을 추가하거나 기존 기능을 변경</code>하려고 할 때 사용한다.</p>
+<p><code>클래스에 기능을 추가하고 싶으면 기존 클래스를 수정하면 되는데 왜 굳이 상속을 받아서 처리해야 하지?</code>라는 의문이 들 수도 있다.</p>
+<p>하지만 기존 클래스가 <code>라이브러리 형태</code>로 제공되거나 <code>수정이 허용되지 않는 상황</code>이라면 상속을 사용해야 한다.</p>
+<p>이제 원래 목적인 a<sup>b</sup> 을 계산하는 MoreFourCal 클래스를 만들어 보자.</p>
+<div id="c2336f02" class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MoreFourCal(FourCal):</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="bu">pow</span>(<span class="va">self</span>):</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="va">self</span>.first <span class="op">**</span> <span class="va">self</span>.second</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>pass 문장은 삭제하고 위와 같이 두 수의 거듭제곱을 구할 수 있는 pow 메서드를 추가했다.</p>
+<p>그리고 다음과 같이 pow 메서드를 수행해 보자.</p>
+<div id="c1f544d1" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> MoreFourCal(<span class="dv">4</span>, <span class="dv">2</span>)</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">pow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<pre><code>16</code></pre>
+</div>
+</div>
+<p>MoreFourCal 클래스로 만든 a 객체에 값 4와 2를 지정한 후</p>
+<p>pow 메서드를 호출하면 4의 2제곱(4<sup>2</sup>)인 16을 리턴하는 것을 확인할 수 있다.</p>
+<p>상속받은 기능인 add 메서드도 잘 동작한다.</p>
+<p>상속은 MoreFourCal 클래스처럼 기존 클래스(FourCal)는 그대로 놔둔 채 클래스의 기능을 확장할 때 주로 사용한다.</p>
+</section>
+</section>
+<section id="메서드-오버라이딩" class="level3">
+<h3 class="anchored" data-anchor-id="메서드-오버라이딩">메서드 오버라이딩</h3>
+<p>이번에는 FourCal 클래스를 다음과 같이 실행해 보자.</p>
+<div id="6573afc9" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> FourCal(<span class="dv">4</span>, <span class="dv">0</span>)</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>a.div()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg ansi-bold">ZeroDivisionError</span>                         Traceback (most recent call last)
+<span class="ansi-green-fg ansi-bold">z:\yeomjm\교육\강의자료\학부\위성영상처리및실습_2_2\강의자료\5장_파이썬기초_V_클래스\위성영상처리_파이썬기초_05.ipynb 셀 154</span> line <span class="ansi-cyan-fg">2
+</span><span class="ansi-green-fg">      &lt;a href='vscode-notebook-cell:/z%3A/yeomjm/%EA%B5%90%EC%9C%A1/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/%ED%95%99%EB%B6%80/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC%EB%B0%8F%EC%8B%A4%EC%8A%B5_2_2/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/5%EC%9E%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_V_%ED%81%B4%EB%9E%98%EC%8A%A4/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_05.ipynb#Z1262sZmlsZQ%3D%3D?line=0'&gt;1&lt;/a&gt;</span> a = FourCal(4, 0)
+<span class="ansi-green-fg ansi-bold">----&gt; &lt;a href='vscode-notebook-cell:/z%3A/yeomjm/%EA%B5%90%EC%9C%A1/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/%ED%95%99%EB%B6%80/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC%EB%B0%8F%EC%8B%A4%EC%8A%B5_2_2/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/5%EC%9E%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_V_%ED%81%B4%EB%9E%98%EC%8A%A4/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_05.ipynb#Z1262sZmlsZQ%3D%3D?line=1'&gt;2&lt;/a&gt;</span> a.div()
+
+<span class="ansi-green-fg ansi-bold">z:\yeomjm\교육\강의자료\학부\위성영상처리및실습_2_2\강의자료\5장_파이썬기초_V_클래스\위성영상처리_파이썬기초_05.ipynb 셀 154</span> line <span class="ansi-cyan-fg">1
+</span><span class="ansi-green-fg">     &lt;a href='vscode-notebook-cell:/z%3A/yeomjm/%EA%B5%90%EC%9C%A1/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/%ED%95%99%EB%B6%80/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC%EB%B0%8F%EC%8B%A4%EC%8A%B5_2_2/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/5%EC%9E%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_V_%ED%81%B4%EB%9E%98%EC%8A%A4/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_05.ipynb#Z1262sZmlsZQ%3D%3D?line=16'&gt;17&lt;/a&gt;</span> def div(self):
+<span class="ansi-green-fg ansi-bold">---&gt; &lt;a href='vscode-notebook-cell:/z%3A/yeomjm/%EA%B5%90%EC%9C%A1/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/%ED%95%99%EB%B6%80/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC%EB%B0%8F%EC%8B%A4%EC%8A%B5_2_2/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/5%EC%9E%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_V_%ED%81%B4%EB%9E%98%EC%8A%A4/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_05.ipynb#Z1262sZmlsZQ%3D%3D?line=17'&gt;18&lt;/a&gt;</span>     result = self.first / self.second
+<span class="ansi-green-fg">     &lt;a href='vscode-notebook-cell:/z%3A/yeomjm/%EA%B5%90%EC%9C%A1/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/%ED%95%99%EB%B6%80/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC%EB%B0%8F%EC%8B%A4%EC%8A%B5_2_2/%EA%B0%95%EC%9D%98%EC%9E%90%EB%A3%8C/5%EC%9E%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_V_%ED%81%B4%EB%9E%98%EC%8A%A4/%EC%9C%84%EC%84%B1%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC_%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B8%B0%EC%B4%88_05.ipynb#Z1262sZmlsZQ%3D%3D?line=18'&gt;19&lt;/a&gt;</span>     return result
+
+<span class="ansi-red-fg ansi-bold">ZeroDivisionError</span>: division by zero</pre>
+</div>
+</div>
+</div>
+<p>FourCal 클래스의 객체 a에 값 4와 0을 지정하고 div 메서드를 호출하면 4를 0으로 나누려고 하므로 ZeroDivisionError 오류가 발생한다.</p>
+<p>0으로 나눌 때 오류가 아닌 값 0을 리턴받고 싶다면 어떻게 해야 할까?</p>
+<p>다음과 같이 FourCal 클래스를 상속하는 SafeFourCal 클래스를 만들어 보자.</p>
+<div id="072fb169" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SafeFourCal(FourCal):</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> div(<span class="va">self</span>):</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.second <span class="op">==</span> <span class="dv">0</span>:  <span class="co"># 나누는 값이 0인 경우 0을 리턴하도록 수정</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>.first <span class="op">/</span> <span class="va">self</span>.second</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>FourCal 클래스에 있는 div 메서드를 동일한 이름으로 다시 작성했다.</p>
+<p>이렇게 <code>부모 클래스(상속한 클래스)</code>에 있는 메서드를 동일한 이름으로 다시 만드는 것을 <code>메서드 오버라이딩(method overriding)</code>이라고 한다.</p>
+<p>이렇게 메서드를 오버라이딩하면 <code>부모 클래스의 메서드 대신 오버라이딩한 메서드가 호출</code>된다.</p>
+<p>SafeFourCal 클래스에 오버라이딩한 div 메서드는 나누는 값이 0인 경우에는 0을 리턴하도록 수정했다.</p>
+<p>이제 다시 앞에서 수행한 예제를 FourCal 클래스 대신 SafeFourCal 클래스를 사용하여 수행해 보자.</p>
+<div id="522aa793" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> SafeFourCal(<span class="dv">4</span>, <span class="dv">0</span>)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>a.div()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="63">
+<pre><code>0</code></pre>
+</div>
+</div>
+<p>FourCal 클래스와 달리 ZeroDivisionError가 발생하지 않고 의도한 대로 0이 리턴되는 것을 확인할 수 있다.</p>
+<section id="클래스변수" class="level4">
+<h4 class="anchored" data-anchor-id="클래스변수">클래스변수</h4>
+<p><code>객체변수</code>는 다른 객체들의 영향을 받지 않고 독립적으로 그 값을 유지한다는 점을 이미 알아보았다.</p>
+<p>이번에는 객체변수와는 성격이 다른 <code>클래스변수</code>에 대해 알아보자.</p>
+<p>다음 클래스를 작성해 보자.</p>
+<div id="51821bef" class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Family:</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>    lastname <span class="op">=</span> <span class="st">"김"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Family 클래스에 선언한 lastname이 바로 <code>클래스변수</code>이다.</p>
+<p><code>클래스변수</code>는 <strong>클래스 안에 함수를 선언</strong>하는 것과 마찬가지로 <strong>클래스 안에 변수를 선언하여 생성</strong>한다.</p>
+<p>이제 Family 클래스를 다음과 같이 사용해 보자.</p>
+<div id="69ee2dc6" class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>Family.lastname</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="66">
+<pre><code>'김'</code></pre>
+</div>
+</div>
+<p>클래스변수는 위 예와 같이 <code>클래스_이름.클래스변수로 사용</code>할 수 있다.</p>
+<p>또는 다음과 같이 Family 클래스로 만든 객체를 이용해도 클래스변수를 사용할 수 있다.</p>
+<div id="6434f6bd" class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> Family()</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> Family()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="0692dc57" class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>a.lastname</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="68">
+<pre><code>'김'</code></pre>
+</div>
+</div>
+<div id="cb7867e8" class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>b.lastname</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="69">
+<pre><code>'김'</code></pre>
+</div>
+</div>
+<p>만약 <code>Family 클래스</code>의 lastname을 “박”이라는 문자열로 바꾸면 어떻게 될까?</p>
+<p>다음과 같이 확인해 보자.</p>
+<div id="78948c62" class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>Family.lastname <span class="op">=</span> <span class="st">"박"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="1f9c0126" class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>a.lastname</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="71">
+<pre><code>'박'</code></pre>
+</div>
+</div>
+<div id="c5e65d78" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a> b.lastname</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="72">
+<pre><code>'박'</code></pre>
+</div>
+</div>
+<p>클래스변수의 값을 변경했더니 <code>클래스로 만든 객체의 lastname 값도 모두 변경</code>된다는 것을 확인할 수 있다.</p>
+<ul>
+<li><code>즉, 클래스변수는 객체변수와 달리 클래스로 만든 모든 객체에 공유된다는 특징이 있다.</code></li>
+</ul>
+<p>클래스변수를 가장 늦게 설명하는 이유는 클래스에서 객체변수가 클래스변수보다 훨씬 중요하기 때문이다.</p>
+<p>실무에서 프로그래밍할 때도 클래스변수보다 객체변수를 사용하는 비율이 훨씬 높다.</p>
+</section>
+<section id="클래스변수와-동일한-이름의-객체변수를-생성하면" class="level4">
+<h4 class="anchored" data-anchor-id="클래스변수와-동일한-이름의-객체변수를-생성하면">클래스변수와 동일한 이름의 객체변수를 생성하면?</h4>
+<p>위의 예제에서 a.lastname을 다음처럼 변경하면 어떻게 될까?</p>
+<div id="3bb8e72e" class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>a.lastname <span class="op">=</span> <span class="st">"최"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="adec1a3f" class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>a.lastname</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="76">
+<pre><code>'최'</code></pre>
+</div>
+</div>
+<p>이렇게 하면 Family 클래스의 lastname이 바뀌는 것이 아니라 a 객체에 lastname이라는 객체변수가 새롭게 생성된다.</p>
+<p>즉, 객체변수는 클래스변수와 동일한 이름으로 생성할 수 있다.</p>
+<p>a.lastname 객체변수를 생성하더라도 Family 클래스의 lastname과는 상관없다는 것을 다음과 같이 확인할 수 있다.</p>
+<div id="a484a35d" class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>Family.lastname</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c712361b" class="cell">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>b.lastname</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="모듈" class="level1">
+<h1>모듈</h1>
+<p><code>모듈</code>이란 함수나 변수 또는 클래스를 모아 놓은 <code>파이썬 파일</code>이다.</p>
+<p>모듈은 다른 파이썬 프로그램에서 불러와 사용할 수 있도록 만든 파이썬 파일이라고도 할 수 있다.</p>
+<p>우리는 파이썬으로 프로그래밍을 할 때 매우 많은 모듈을 사용한다.</p>
+<p>다른 사람들이 이미 만들어 놓은 모듈을 사용할 수도 있고 우리가 직접 만들어 사용할 수도 있다.</p>
+<p>여기에서는 모듈을 어떻게 만들고 사용할 수 있는지 알아본다.</p>
+<p><img src="05_2_mod1.png" alt="대체_텍스트" width="500" height="500"></p>
+<section id="모듈-만들기" class="level3">
+<h3 class="anchored" data-anchor-id="모듈-만들기">모듈 만들기</h3>
+<p>모듈에 대해 자세히 살펴보기 전에 간단한 모듈을 한번 만들어 보자. - 탐색기에서 새파일 만들기 - 파일명 및 확장자 이름을 mod1.py로 설정 - mod1.py 파일 수정 및 저장</p>
+<div id="cba94bb9" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mod1.py</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(a, b):</span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sub(a, b): </span>
+<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">-</span>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>위와 같이 add와 sub 함수만 있는 파일 mod1.py를 만들고 홈 디렉터리에 저장하자.</p>
+<p>이 <code>mod1.py 파일</code>이 바로 <code>모듈</code>이다.</p>
+<p>지금까지 에디터로 만든 파이썬 파일과 다르지 않다.</p>
+<p><code>- 파이썬 확장자 .py로 만든 파이썬 파일은 모두 모듈이다.</code></p>
+</section>
+<section id="모듈-불러오기" class="level3">
+<h3 class="anchored" data-anchor-id="모듈-불러오기">모듈 불러오기</h3>
+<p>우리가 만든 mod1.py 파일, 즉 모듈을 파이썬에서 불러와 사용하려면 어떻게 해야 할까?</p>
+<p>먼저 다음과 같이 명령 프롬프트 창을 열고</p>
+<p>mod1.py를 저장한 디렉터리(본 강의에서는 홈 디렉토리)로 이동한 후 대화형 인터프리터를 실행해 보자.</p>
+<p><code>반드시 mod1.py 파일을 저장한 홈 디렉터리</code>로 <code>이동</code>한 후 예제를 진행해야 한다.</p>
+<p>그래야만 대화형 인터프리터에서 mod1.py 모듈을 읽을 수 있다.</p>
+<p>그리고 다음과 같이 따라 해 보자.</p>
+<div id="c4858f86" class="cell" data-execution_count="91">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mod1</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mod1.add(<span class="dv">3</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>7</code></pre>
+</div>
+</div>
+<div id="ffe013a2" class="cell" data-execution_count="92">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mod1.sub(<span class="dv">4</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2</code></pre>
+</div>
+</div>
+<p>mod1.py 모듈을 불러오기 위해 import mod1이라고 입력했다.</p>
+<p>실수로 import mod1.py라고 입력하지 않도록 주의하자.</p>
+<p><code>import</code>는 이미 만들어 놓은 파이썬 모듈을 사용할 수 있게 해 주는 명령어이다.</p>
+<p>mod1. py 파일에 있는 add 함수를 사용하기 위해서는</p>
+<p><code>mod1.add</code>처럼 모듈 이름 뒤에 <code>도트 연산자(.)</code>를 붙이고 함수 이름을 쓰면 된다.</p>
+<ul>
+<li><p>import는 <code>현재 디렉터리에 있는 파일</code>이나 <strong>파이썬 라이브러리가 저장된 디렉터리</strong>에 있는 모듈만 불러올 수 있다.</p></li>
+<li><p>파이썬 라이브러리는 파이썬을 설치할 때 자동으로 설치되는 파이썬 모듈을 말한다.</p></li>
+</ul>
+<p>import의 사용 방법은 다음과 같다.</p>
+<div id="cb04cf2e" class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> 모듈_이름</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>여기에서 모듈 이름은 mod1.py에서 .py 확장자를 제거한 mod1만을 가리킨다.</p>
+<p>때로는 <code>mod1.add, mod1.sub처럼 쓰지 않고 add, sub처럼 모듈 이름 없이 함수 이름만 쓰고 싶은 경우</code>도 있을 것이다.</p>
+<p>이럴 때는 다음과 같이 사용하면 된다.</p>
+<div id="c7693107" class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> 모듈_이름 <span class="im">import</span> 모듈_함수</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>위와 같이 함수를 직접 import하면 모듈 이름을 붙이지 않고 바로 해당 모듈의 함수를 쓸 수 있다.</code></p>
+<p>다음과 같이 따라 해 보자.</p>
+<div id="d5175463" class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mod1 <span class="im">import</span> add</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>add(<span class="dv">3</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="82">
+<pre><code>7</code></pre>
+</div>
+</div>
+<p>그런데 이렇게 하면 mod1.py 파일의 add 함수 하나만 사용할 수 있다.</p>
+<p><code>add 함수</code>와 <code>sub 함수 둘</code>다 모듈 이름을 붙이지 않고 사용하려면 어떻게 해야 할까?</p>
+<p>2가지 방법이 있다.</p>
+<div id="15288980" class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mod1 <span class="im">import</span> add, sub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>첫 번째 방법은 위와 같이 from 모듈_이름 import <code>모듈_함수1, 모듈_함수2</code>처럼 사용하는 것이다.</p>
+<p><code>쉼표(,)로 구분</code>하여 필요한 함수를 불러올 수 있다.</p>
+<div id="0db7c463" class="cell" data-execution_count="94">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mod1 <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>두 번째 방법은 <code>*</code> 문자를 사용하는 것이다.</p>
+<p><code>*</code> 문자는 ’모든 것’이라는 뜻인데, 파이썬에서도 같은 의미로 사용한다.</p>
+<p>따라서 <code>from mod1 import *</code>은 <code>mod1 모듈의 모든 함수를 불러와 사용</code>하겠다는 뜻이다.</p>
+<p>mod1.py 파일에는 함수가 2개밖에 없으므로 위 2가지 방법은 동일하게 적용된다.</p>
+</section>
+<section id="if-__name__-__main__의-의미" class="level3">
+<h3 class="anchored" data-anchor-id="if-__name__-__main__의-의미"><code>if __name__ == "__main__"</code>:의 의미</h3>
+<p>이번에는 mod1.py 파일을 다음과 같이 수정해 보자.</p>
+<div id="a75bf74b" class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mod1.py</span></span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(a, b): </span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">+</span>b</span>
+<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sub(a, b): </span>
+<span id="cb102-6"><a href="#cb102-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">-</span>b</span>
+<span id="cb102-7"><a href="#cb102-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-8"><a href="#cb102-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(add(<span class="dv">1</span>, <span class="dv">4</span>))  <span class="co"># 추가된 부분</span></span>
+<span id="cb102-9"><a href="#cb102-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sub(<span class="dv">4</span>, <span class="dv">2</span>))  <span class="co"># 추가된 부분</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5
+2</code></pre>
+</div>
+</div>
+<p>add(1, 4)와 sub(4, 2)의 결과를 출력하는 문장을 추가했다.</p>
+<p>그리고 출력한 결괏값을 확인하기 위해 mod1.py 파일을 다음과 같이 실행해 보자.</p>
+<div id="cb53c921" class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co">#C:\doit&gt;python mod1.py</span></span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="co">#5</span></span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="co">#2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f95649ca" class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co">#C:\Users\pahkey&gt; cd C:\doit</span></span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="co">#C:\doit&gt; python</span></span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mod1 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="692f0640" class="cell">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span></span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>엉뚱하게도 import mod1을 수행하는 순간 mod1.py 파일이 실행되어 결괏값을 출력한다.</p>
+<p>우리는 단지 mod1.py 파일의 add와 sub 함수만 사용하려고 했는데 말이다.</p>
+<p>이러한 문제를 방지하려면 mod1.py 파일을 다음처럼 수정해야 한다.</p>
+<div id="489f9b05" class="cell">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mod1.py</span></span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(a, b): </span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">+</span>b</span>
+<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sub(a, b): </span>
+<span id="cb107-6"><a href="#cb107-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">-</span>b</span>
+<span id="cb107-7"><a href="#cb107-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-8"><a href="#cb107-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:   <span class="co"># 수정된 부분</span></span>
+<span id="cb107-9"><a href="#cb107-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(add(<span class="dv">1</span>, <span class="dv">4</span>))</span>
+<span id="cb107-10"><a href="#cb107-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(sub(<span class="dv">4</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>if <code>__name__ == "__main__"</code>을 사용하면 C:&gt;python mod1.py처럼 직접 이 파일을 실행했을 때는<code>__name__ == "__main__"</code>이 참이 되어 if 문 다음 문장이 수행된다.</p>
+<p>이와 반대로 <code>대화형 인터프리터</code>나 다른 파일에서 이 <code>모듈을 불러 사용할 때</code>는 <code>__name__ == "__main__"</code>이 거짓이 되어 if 문 다음 문장이 수행되지 않는다.</p>
+<p>위와 같이 수정한 후 다시 대화형 인터프리터를 열고 실행해 보자.</p>
+<div id="6d52d445" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mod1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>'mod1'</code></pre>
+</div>
+</div>
+<p>아무런 결괏값도 출력되지 않는 것을 확인할 수 있다.</p>
+</section>
+<section id="name__-변수란" class="level3">
+<h3 class="anchored" data-anchor-id="name__-변수란"><code>__name__</code> 변수란?</h3>
+<p>파이썬의 <code>__name__</code> 변수는 파이썬이 내부적으로 사용하는 특별한 변수 이름이다.</p>
+<p>만약 C:&gt;python mod1.py (홈 디렉토리)처럼 직접 mod1.py 파일을 실행할 경우, mod1.py의 <code>__name__</code> 변수에는 <code>__main__</code> 값이 저장된다.</p>
+<p>하지만 파이썬 셸이나 다른 파이썬 모듈에서 mod1을 import할 경우에는 mod1.py의 <code>__name__</code> 변수에 mod1.py의 모듈 이름인 mod1이 저장된다.</p>
+<div id="9589b7e1" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mod1</span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>mod1.<span class="va">__name__</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>'mod1'</code></pre>
+</div>
+</div>
+<section id="클래스나-변수-등을-포함한-모듈" class="level4">
+<h4 class="anchored" data-anchor-id="클래스나-변수-등을-포함한-모듈">클래스나 변수 등을 포함한 모듈</h4>
+<p>지금까지 살펴본 모듈은 함수만 포함했지만, 클래스나 변수 등을 포함할 수도 있다.</p>
+<p>다음과 같은 프로그램을 작성해 보자.</p>
+<div id="55ff0150" class="cell">
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mod2.py</span></span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>PI <span class="op">=</span> <span class="fl">3.141592</span></span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Math: </span>
+<span id="cb112-5"><a href="#cb112-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> solv(<span class="va">self</span>, r): </span>
+<span id="cb112-6"><a href="#cb112-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> PI <span class="op">*</span> (r <span class="op">**</span> <span class="dv">2</span>) </span>
+<span id="cb112-7"><a href="#cb112-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-8"><a href="#cb112-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(a, b): </span>
+<span id="cb112-9"><a href="#cb112-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">+</span>b </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>이 파일은 <code>원의 넓이를 계산</code>하는 <code>Math 클래스</code>와 <code>두 값을 더하는 add 함수</code> 그리고 <code>원주율 값에 해당하는 PI 변수</code>처럼</p>
+<p><code>클래스, 함수, 변수</code> 등을 모두 포함하고 있다.</p>
+<p>파일 이름을 mod2.py로 하고 C:디렉터리 (<code>본 강의에서는 홈 디렉토리</code>)에 저장하자.</p>
+<p>그리고 대화형 인터프리터를 열어 다음과 같이 따라 해 보자.</p>
+<div id="a3391cb7" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mod2</span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mod2.PI)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3.141592</code></pre>
+</div>
+</div>
+<p>위 예에서 볼 수 있듯이 <code>mod2.PI</code>를 입력해서 mod2.py 파일에 있는 PI 변수의 값을 사용할 수 있다.</p>
+<div id="2ae52ca2" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> mod2.Math()</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a.solv(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>12.566368</code></pre>
+</div>
+</div>
+<p>위 예는 mod2.py에 있는 Math 클래스를 사용하는 방법을 보여 준다.</p>
+<div id="a0e1ce4a" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mod2.add(mod2.PI, <span class="fl">4.4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>7.5415920000000005</code></pre>
+</div>
+</div>
+<p>mod2.py에 있는 add 함수 역시 당연히 사용할 수 있다.</p>
+</section>
+<section id="다른-파일에서-모듈-불러오기" class="level4">
+<h4 class="anchored" data-anchor-id="다른-파일에서-모듈-불러오기">다른 파일에서 모듈 불러오기</h4>
+<p>지금까지는 만들어 놓은 모듈 파일을 사용하기 위해 대화형 인터프리터만 사용했다.</p>
+<p>이번에는 <code>다른 파이썬 파일에서 이전에 만들어 놓은 모듈을 불러와서 사용하는 방법</code>에 대해 알아보자.</p>
+<p>여기에서는 조금 전에 만든 모듈인 mod2.py 파일을 불러올 것이다.</p>
+<div id="dbb2d347" class="cell">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># modtest.py</span></span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mod2</span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> mod2.add(<span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>위에서 볼 수 있듯이 다른 파이썬 파일에서도 import mod2로 mod2 모듈을 불러와서 사용할 수 있다.</p>
+<p>대화형 인터프리터에서 한 것과 동일한 방법이다.</p>
+<p>위 예제가 정상적으로 실행되기 위해서는 modtest.py 파일과 mod2.py 파일이 동일한 홈 디렉터리(C:)에 있어야 한다.</p>
+<div id="25ae4ca8" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> modtest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>7</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="다른-디렉터리에-있는-모듈을-불러오는-방법" class="level3">
+<h3 class="anchored" data-anchor-id="다른-디렉터리에-있는-모듈을-불러오는-방법">다른 디렉터리에 있는 모듈을 불러오는 방법</h3>
+<p>우리는 지금까지 해당 모듈이 있는 디렉터리로 이동한 후에야 그 모듈을 사용할 수 있었다.</p>
+<p>이번에는 모듈을 저장한 디렉터리로 이동하지 않고 모듈을 불러와서 사용하는 방법에 대해 알아보자.</p>
+<div id="b75b6ac5" class="cell">
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co">#### sys.path.append 사용하기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="6a324d65" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="4b60a120" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>sys.path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>['z:\\yeomjm\\교육\\강의자료\\학부\\위성영상처리및실습_2_2\\강의자료\\5장_파이썬기초_V_클래스',
+ 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\python311.zip',
+ 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\DLLs',
+ 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\Lib',
+ 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0',
+ '',
+ 'C:\\Users\\USER\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages',
+ 'C:\\Users\\USER\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\win32',
+ 'C:\\Users\\USER\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\win32\\lib',
+ 'C:\\Users\\USER\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\Pythonwin',
+ 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\Lib\\site-packages']</code></pre>
+</div>
+</div>
+<p><code>sys.path</code>는 파이썬 라이브러리가 설치되어 있는 디렉터리 목록을 보여 준다.</p>
+<p>이 디렉터리 안에 저장된 파이썬 모듈은 모듈이 저장된 디렉터리로 이동할 필요 없이 바로 불러 사용할 수 있다.</p>
+<p>그렇다면 sys.path에 C:디렉터리를 추가하면</p>
+<p>mymod 디렉터리에 저장된 파이썬 모듈은 아무 곳에서나 불러 사용할 수 있지 않을까?</p>
+<p>당연하다.</p>
+<p>sys.path는 리스트이므로 우리는 다음과 같이 할 수 있다.</p>
+<div id="157493bc" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sys.path.append("C:/doit/mymod")</span></span>
+<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">"./mymod"</span>)</span>
+<span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a>sys.path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>['z:\\yeomjm\\교육\\강의자료\\학부\\위성영상처리및실습_2_2\\강의자료\\5장_파이썬기초_V_클래스',
+ 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\python311.zip',
+ 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\DLLs',
+ 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\Lib',
+ 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0',
+ '',
+ 'C:\\Users\\USER\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages',
+ 'C:\\Users\\USER\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\win32',
+ 'C:\\Users\\USER\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\win32\\lib',
+ 'C:\\Users\\USER\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\Pythonwin',
+ 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\Lib\\site-packages',
+ './mymod']</code></pre>
+</div>
+</div>
+<section id="pythonpath-환경-변수-사용하기" class="level4">
+<h4 class="anchored" data-anchor-id="pythonpath-환경-변수-사용하기">PYTHONPATH 환경 변수 사용하기</h4>
+<p>모듈을 불러와서 사용하는 또 다른 방법으로는 PYTHONPATH 환경 변수를 사용하는 것이 있다.</p>
+<p>다음과 같이 따라 해 보자.</p>
+<p>#C:&gt;set PYTHONPATH=C: #C:&gt;python #import mod2 #print(mod2.add(3, 4))</p>
+<p>set 명령어를 사용해 PYTHONPATH 환경 변수에 mod2.py 파일이 있는 C:디렉터리를 설정한다.</p>
+<p>그러면 디렉터리 이동이나 별도의 모듈 추가 작업 없이 mymod 디렉터리에 저장된 mod2 모듈을 불러와서 사용할 수 있다.</p>
+<ul>
+<li>맥이나 유닉스 환경에서는 set 대신 export 명령을 사용해야 한다.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="연습문제-점프투-파이썬-책-자료-활용" class="level1">
+<h1>연습문제 (점프투 파이썬 책 자료 활용)</h1>
+<section id="q1.-다음과-같이-동작하는-클래스-calculator를-작성해보자" class="level3">
+<h3 class="anchored" data-anchor-id="q1.-다음과-같이-동작하는-클래스-calculator를-작성해보자">Q1. 다음과 같이 동작하는 클래스 Calculator를 작성해보자</h3>
+<div id="e1e1f78a" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Calculator:</span>
+<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, numberList):</span>
+<span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.numberList <span class="op">=</span> numberList</span>
+<span id="cb128-4"><a href="#cb128-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-5"><a href="#cb128-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="bu">sum</span>(<span class="va">self</span>):</span>
+<span id="cb128-6"><a href="#cb128-6" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb128-7"><a href="#cb128-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> num <span class="kw">in</span> <span class="va">self</span>.numberList:</span>
+<span id="cb128-8"><a href="#cb128-8" aria-hidden="true" tabindex="-1"></a>            result <span class="op">+=</span> num</span>
+<span id="cb128-9"><a href="#cb128-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
+<span id="cb128-10"><a href="#cb128-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb128-11"><a href="#cb128-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> avg(<span class="va">self</span>):</span>
+<span id="cb128-12"><a href="#cb128-12" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> <span class="va">self</span>.<span class="bu">sum</span>()</span>
+<span id="cb128-13"><a href="#cb128-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> total <span class="op">/</span> <span class="bu">len</span>(<span class="va">self</span>.numberList)</span>
+<span id="cb128-14"><a href="#cb128-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb128-15"><a href="#cb128-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-16"><a href="#cb128-16" aria-hidden="true" tabindex="-1"></a>cal1 <span class="op">=</span>Calculator([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>])</span>
+<span id="cb128-17"><a href="#cb128-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cal1.<span class="bu">sum</span>())</span>
+<span id="cb128-18"><a href="#cb128-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cal1.avg())</span>
+<span id="cb128-19"><a href="#cb128-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-20"><a href="#cb128-20" aria-hidden="true" tabindex="-1"></a>cal2 <span class="op">=</span>Calculator([<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>])</span>
+<span id="cb128-21"><a href="#cb128-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cal2.<span class="bu">sum</span>())</span>
+<span id="cb128-22"><a href="#cb128-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cal2.avg())</span>
+<span id="cb128-23"><a href="#cb128-23" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>15
+3.0
+30
+7.5</code></pre>
+</div>
+</div>
+</section>
+<section id="q2.-앞의-문제에서-작성한-calculator-클래스를-calculator.py라는-파일로-작성해서-저장하자.-그리고-이-파일을-모듈로-사용해서-결과를-각자-출력해보자" class="level3">
+<h3 class="anchored" data-anchor-id="q2.-앞의-문제에서-작성한-calculator-클래스를-calculator.py라는-파일로-작성해서-저장하자.-그리고-이-파일을-모듈로-사용해서-결과를-각자-출력해보자">Q2. 앞의 문제에서 작성한 Calculator 클래스를 calculator.py라는 파일로 작성해서 저장하자. 그리고 이 파일을 모듈로 사용해서 결과를 각자 출력해보자</h3>
+</section>
+</section>
+<section id="참고문헌" class="level1">
+<h1>참고문헌</h1>
+<p>점프투 파이썬 from Wididocs</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
