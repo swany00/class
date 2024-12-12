@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://swany00.github.io/class/index.html</loc>
-    <lastmod>2024-10-23T05:08:41.761Z</lastmod>
+    <lastmod>2024-10-24T00:27:03.820Z</lastmod>
   </url>
   <url>
     <loc>https://swany00.github.io/class/머신러닝/ML05.html</loc>
@@ -21,8 +21,8 @@
     <lastmod>2024-10-23T05:13:35.453Z</lastmod>
   </url>
   <url>
-    <loc>https://swany00.github.io/class/R_01(1).html</loc>
-    <lastmod>2024-10-23T05:13:35.193Z</lastmod>
+    <loc>https://swany00.github.io/class/데이터과학프로그래밍/P01_DataType.html</loc>
+    <lastmod>2024-10-23T05:13:35.369Z</lastmod>
   </url>
   <url>
     <loc>https://swany00.github.io/class/데이터과학프로그래밍/데이터프로그래밍/R3.html</loc>
@@ -37,12 +37,16 @@
     <lastmod>2024-10-23T05:13:35.409Z</lastmod>
   </url>
   <url>
-    <loc>https://swany00.github.io/class/posts/머신러닝/노트3.html</loc>
-    <lastmod>2024-10-23T05:13:16.661Z</lastmod>
+    <loc>https://swany00.github.io/class/posts/welcome/index.html</loc>
+    <lastmod>2024-10-24T00:27:03.820Z</lastmod>
   </url>
   <url>
-    <loc>https://swany00.github.io/class/posts/머신러닝/과제 리뷰.html</loc>
-    <lastmod>2024-10-23T05:11:56.545Z</lastmod>
+    <loc>https://swany00.github.io/class/posts/머신러닝/노트6.html</loc>
+    <lastmod>2024-10-23T05:12:30.017Z</lastmod>
+  </url>
+  <url>
+    <loc>https://swany00.github.io/class/posts/머신러닝/노트4.html</loc>
+    <lastmod>2024-10-23T05:13:00.393Z</lastmod>
   </url>
   <url>
     <loc>https://swany00.github.io/class/posts/위성영상처리실습/2장 파이썬기초2/위성영상처리_파이썬기초_02.html</loc>
@@ -58,7 +62,7 @@
   </url>
   <url>
     <loc>https://swany00.github.io/class/about.html</loc>
-    <lastmod>2024-10-23T05:08:41.765Z</lastmod>
+    <lastmod>2024-10-24T00:27:03.824Z</lastmod>
   </url>
   <url>
     <loc>https://swany00.github.io/class/위성영상처리 실습/5장_파이썬기초5/5_class.html</loc>
@@ -93,12 +97,16 @@
     <lastmod>2024-10-23T05:09:46.593Z</lastmod>
   </url>
   <url>
-    <loc>https://swany00.github.io/class/posts/머신러닝/노트4.html</loc>
-    <lastmod>2024-10-23T05:13:00.393Z</lastmod>
+    <loc>https://swany00.github.io/class/posts/post-with-code/index.html</loc>
+    <lastmod>2024-10-24T00:27:03.820Z</lastmod>
   </url>
   <url>
-    <loc>https://swany00.github.io/class/posts/머신러닝/노트6.html</loc>
-    <lastmod>2024-10-23T05:12:30.017Z</lastmod>
+    <loc>https://swany00.github.io/class/posts/머신러닝/과제 리뷰.html</loc>
+    <lastmod>2024-10-23T05:11:56.545Z</lastmod>
+  </url>
+  <url>
+    <loc>https://swany00.github.io/class/posts/머신러닝/노트3.html</loc>
+    <lastmod>2024-10-23T05:13:16.661Z</lastmod>
   </url>
   <url>
     <loc>https://swany00.github.io/class/데이터과학프로그래밍/데이터프로그래밍/중간정리.html</loc>
@@ -113,8 +121,8 @@
     <lastmod>2024-10-23T05:13:35.381Z</lastmod>
   </url>
   <url>
-    <loc>https://swany00.github.io/class/데이터과학프로그래밍/P01_DataType.html</loc>
-    <lastmod>2024-10-23T05:13:35.369Z</lastmod>
+    <loc>https://swany00.github.io/class/데이터과학프로그래밍/R_01(1).html</loc>
+    <lastmod>2024-10-23T05:13:35.193Z</lastmod>
   </url>
   <url>
     <loc>https://swany00.github.io/class/머신러닝/ML04 (1).html</loc>
